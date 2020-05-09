@@ -18,15 +18,24 @@ If you would like to use [nvm](https://github.com/nvm-sh/nvm), you can run `nvm 
 
 In the project directory, you can run:
 
-## `yarn start`
+## `npm run start`
 
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn test`
+## `npm run test`
 
 Launches the test runner in the interactive watch mode.
 
-### `yarn build`
+## `npm run build`
 
 Builds the app for production to the `build` folder.
+
+## `npm run serve`
+
+Serve the `build` folder with [http-server](https://www.npmjs.com/package/http-server).
+Note: You must run `npm run build` first.
+
+## `npm run analyze`
+
+Analyze the size of build files.
