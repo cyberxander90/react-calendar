@@ -39,6 +39,7 @@
   "devDependencies": {
     "bundlesize": "^0.18.0",
     "eslint-config-airbnb": "^18.1.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.10.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -47,6 +48,7 @@
     "http-server": "^0.12.3",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.2",
+    "node-sass": "^4.14.1",
     "source-map-explorer": "^2.4.2",
     "stylelint": "^13.3.3",
     "stylelint-config-sass-guidelines": "^7.0.0",
