@@ -1,0 +1,92 @@
+{
+  "name": "react-calendar",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test-unit": "npm test -- --watchAll=false",
+    "eject": "react-scripts eject",
+    "serve": "npx http-server build",
+    "analyze": "npx source-map-explorer 'build/static/js/*.js'",
+    "bundle-size": "npx bundlesize",
+    "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx,json,md}\" --fix",
+    "stylelint": "stylelint \"src/**/*.scss\" --fix",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/preset-create-react-app": "^2.1.1",
+    "@storybook/react": "^5.3.18",
+    "@testing-library/jest-dom": "^5.7.0",
+    "@testing-library/react": "^9.5.0",
+    "bundlesize": "^0.18.0",
+    "cypress": "^4.5.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-cypress": "^2.10.3",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-jest-dom": "^2.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "eslint-plugin-testing-library": "^3.1.2",
+    "http-server": "^0.12.3",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "node-sass": "^4.14.1",
+    "source-map-explorer": "^2.4.2",
+    "stylelint": "^13.3.3",
+    "stylelint-config-sass-guidelines": "^7.0.0",
+    "stylelint-config-standard": "^20.0.0"
+  },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/*.chunk.js",
+      "maxSize": "300 kB"
+    },
+    {
+      "path": "./build/static/css/*.chunk.css",
+      "maxSize": "100 kB"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test -- --watchAll=false && npm run bundle-size"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,md}": "eslint --fix",
+    "src/**/*.scss": "stylelint --fix"
+  }
+}
