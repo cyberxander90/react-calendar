@@ -11,12 +11,17 @@
     "plugin:jsx-a11y/recommended",
     "plugin:react/recommended",
     "plugin:jest/recommended",
-    "plugin:jest/style"
+    "plugin:jest/style",
+    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended"
   ],
   "plugins": [
     "jsx-a11y",
     "react",
-    "jest"
+    "jest",
+    "testing-library",
+    "jest-dom"
   ],
   "rules": {
     "comma-dangle": 0,
