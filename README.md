@@ -51,3 +51,7 @@ Fix script files based on [eslint](https://eslint.org/) configs.
 ## `npm run stylelint`
 
 Fix styles files based on [style-lint](https://stylelint.io/) configs.
+
+## `npm run storybook`
+
+To run [storybook](https://storybook.js.org/)
