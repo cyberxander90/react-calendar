@@ -38,4 +38,8 @@ Note: You must run `npm run build` first.
 
 ## `npm run analyze`
 
-Analyze the size of build files.
+Analyze the size of build js files.
+
+## `npm run bundle-size`
+
+Check the build js and css files sizes.

@@ -16,7 +16,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serve": "npx http-server build",
-    "analyze": "npx source-map-explorer 'build/static/js/*.js'"
+    "analyze": "npx source-map-explorer 'build/static/js/*.js'",
+    "bundle-size": "npx bundlesize"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,7 +35,18 @@
     ]
   },
   "devDependencies": {
+    "bundlesize": "^0.18.0",
     "http-server": "^0.12.3",
     "source-map-explorer": "^2.4.2"
-  }
+  },
+  "bundlesize": [
+    {
+      "path": "./build/static/js/*.chunk.js",
+      "maxSize": "300 kB"
+    },
+    {
+      "path": "./build/static/css/*.chunk.css",
+      "maxSize": "100 kB"
+    }
+  ]
 }
