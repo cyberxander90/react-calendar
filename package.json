@@ -22,7 +22,8 @@
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
     "cy:open": "npx cypress open",
-    "cy:run": "npx cypress run"
+    "cy:run": "npx cypress run",
+    "create-component": "node ./scripts/scaffolding/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +49,7 @@
     "@testing-library/jest-dom": "^5.7.0",
     "@testing-library/react": "^9.5.0",
     "bundlesize": "^0.18.0",
+    "change-case": "^4.1.1",
     "cypress": "^4.5.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-import-resolver-webpack": "^0.12.1",

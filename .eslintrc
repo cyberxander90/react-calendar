@@ -14,19 +14,22 @@
     "plugin:jest/style",
     "plugin:testing-library/recommended",
     "plugin:testing-library/react",
-    "plugin:jest-dom/recommended"
+    "plugin:jest-dom/recommended",
+    "plugin:react/recommended"
   ],
   "plugins": [
     "jsx-a11y",
-    "react",
     "jest",
     "testing-library",
-    "jest-dom"
+    "jest-dom",
+    "react",
+    "import"
   ],
   "rules": {
     "comma-dangle": 0,
     "no-unused-expressions": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-extraneous-dependencies": 0
   },
   "settings": {
     "import/resolver": {
