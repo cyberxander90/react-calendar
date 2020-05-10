@@ -1,3 +1,23 @@
 .month-grid {
-  font-size: 20px;
+  display: flex;
+}
+
+.header {
+  display: flex;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.body {
+  // ...
+}
+
+.row {
+  display: flex;
+
+  > * {
+    width: 100%;
+  }
 }
