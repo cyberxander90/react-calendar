@@ -55,3 +55,11 @@ Fix styles files based on [style-lint](https://stylelint.io/) configs.
 ## `npm run storybook`
 
 To run [storybook](https://storybook.js.org/)
+
+## `npm run cy:open`
+
+To open [cypress](https://www.cypress.io/) in the interactive mode.
+
+## `npm run cy:run`
+
+To run [cypress](https://www.cypress.io/) tests.

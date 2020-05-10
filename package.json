@@ -21,7 +21,9 @@
     "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx,json,md}\" --fix",
     "stylelint": "stylelint \"src/**/*.scss\" --fix",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,8 +47,11 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "bundlesize": "^0.18.0",
+    "cypress": "^4.5.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-import-resolver-webpack": "^0.12.1",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jest": "^23.10.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
