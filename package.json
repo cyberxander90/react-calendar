@@ -17,7 +17,9 @@
     "eject": "react-scripts eject",
     "serve": "npx http-server build",
     "analyze": "npx source-map-explorer 'build/static/js/*.js'",
-    "bundle-size": "npx bundlesize"
+    "bundle-size": "npx bundlesize",
+    "eslint": "eslint \"src/**/*.{js,jsx,ts,tsx,json,md}\" --fix",
+    "stylelint": "stylelint \"src/**/*.scss\" --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,8 +38,20 @@
   },
   "devDependencies": {
     "bundlesize": "^0.18.0",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.10.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
     "http-server": "^0.12.3",
-    "source-map-explorer": "^2.4.2"
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "source-map-explorer": "^2.4.2",
+    "stylelint": "^13.3.3",
+    "stylelint-config-sass-guidelines": "^7.0.0",
+    "stylelint-config-standard": "^20.0.0"
   },
   "bundlesize": [
     {
@@ -48,5 +62,14 @@
       "path": "./build/static/css/*.chunk.css",
       "maxSize": "100 kB"
     }
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,md}": "eslint --fix",
+    "src/**/*.scss": "stylelint --fix"
+  }
 }

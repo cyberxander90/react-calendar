@@ -1,0 +1,26 @@
+{
+  "env": {
+    "jest/globals": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
+  ],
+  "plugins": [
+    "jsx-a11y",
+    "react",
+    "jest"
+  ],
+  "rules": {
+    "comma-dangle": 0,
+    "no-unused-expressions": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  }
+}

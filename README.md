@@ -43,3 +43,11 @@ Analyze the size of build js files.
 ## `npm run bundle-size`
 
 Check the build js and css files sizes.
+
+## `npm run eslint`
+
+Fix script files based on [eslint](https://eslint.org/) configs.
+
+## `npm run stylelint`
+
+Fix styles files based on [style-lint](https://stylelint.io/) configs.
