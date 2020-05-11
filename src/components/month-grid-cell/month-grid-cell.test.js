@@ -3,15 +3,9 @@ import { render } from '@testing-library/react';
 import MonthGridCell from './month-grid-cell';
 
 describe(`Test ${MonthGridCell.name} component`, () => {
-  test('renders correctly without params', () => {
-    const { getByText } = render(<MonthGridCell />);
-    const element = getByText(/MonthGridCell/i);
-    expect(element).toBeInTheDocument();
-  });
-
-  test('renders correctly with params', () => {
-    const { getByText } = render(<MonthGridCell name="hello world" />);
-    const element = getByText(/hello world/i);
+  test('renders correctly', () => {
+    const { getByText } = render(<MonthGridCell id="2020-05-10" day={3} tabIndex={0} isCurrentMonth />);
+    const element = getByText(/2020-05-10/i);
     expect(element).toBeInTheDocument();
   });
 });

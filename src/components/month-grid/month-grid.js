@@ -14,12 +14,22 @@ const MonthGrid = ({
   const CellHeaderCmp = cellHeaderCmp || (({ day }) => <div>{day}</div>);
 
   const mapHeaderCell = (day) => <CellHeaderCmp day={day} />;
+  let tabIndex = 0;
   const mapCell = (item) => {
     const id = item.format('YYYY-MM-DD');
     const day = item.date();
     const isCurrentMonth = item.month() === date.month();
+    tabIndex += 1;
 
-    return <CellCmp key={id} id={id} day={day} isCurrentMonth={isCurrentMonth} />;
+    return (
+      <CellCmp
+        key={id}
+        id={id}
+        day={day}
+        isCurrentMonth={isCurrentMonth}
+        tabIndex={tabIndex}
+      />
+    );
   };
 
   const Header = () => (

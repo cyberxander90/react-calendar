@@ -1,5 +1,6 @@
 import React from 'react';
 import MonthGrid from 'src/components/month-grid';
+import MonthGridCell from 'src/components/month-grid-cell';
 import logo from './logo.svg';
 import './App.scss';
 
@@ -8,7 +9,8 @@ function App() {
     <div className="app">
       <header className="app-header">
         <img src={logo} className="app-logo" alt="logo" />
-        <MonthGrid />
+        <MonthGridCell />
+        <MonthGrid cellCmp={MonthGridCell} />
         <p>
           Edit
           {' '}
