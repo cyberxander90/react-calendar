@@ -1,0 +1,24 @@
+.li {
+  height: 20px;
+  overflow: hidden;
+
+  &:hover {
+    background: #f1f3f4;
+    cursor: pointer;
+  }
+
+  > * {
+    display: inline-block;
+  }
+}
+
+.color {
+  border: 1px solid #44484b;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+}
+
+.reminder {
+  font-weight: bold;
+}

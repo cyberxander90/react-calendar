@@ -1,4 +1,5 @@
 body {
+  background: #fff;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -24,4 +25,14 @@ code {
     Consolas,
     'Courier New',
     monospace;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  color: #3c4043;
 }

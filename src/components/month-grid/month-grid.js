@@ -13,7 +13,7 @@ const MonthGrid = ({
   const CellCmp = cellCmp || (({ id }) => <div>{id}</div>);
   const CellHeaderCmp = cellHeaderCmp || (({ day }) => <div>{day}</div>);
 
-  const mapHeaderCell = (day) => <CellHeaderCmp day={day} />;
+  const mapHeaderCell = (day) => <CellHeaderCmp key={day} day={day} />;
   let tabIndex = 0;
   const mapCell = (item) => {
     const id = item.format('YYYY-MM-DD');

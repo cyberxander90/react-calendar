@@ -21,7 +21,7 @@ const Popover = ({
       )}
     >
       <div
-        className={childrenClassName}
+        className={childrenClassName || ''}
         role="button"
         onClick={toggle}
         onKeyDown={toggle}
@@ -34,7 +34,10 @@ const Popover = ({
 };
 
 Popover.propTypes = {
-  children: PropTypes.shape.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   content: PropTypes.func.isRequired,
   tabIndex: PropTypes.number,
   childrenClassName: PropTypes.string,
