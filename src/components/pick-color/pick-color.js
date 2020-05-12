@@ -57,11 +57,12 @@ const colourStyles = {
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
 
-const PickColor = ({ color, onChange }) => (
+const PickColor = ({ color, className, onChange }) => (
   <Select
-    className={stylesColorPicker.pick}
+    className={`${stylesColorPicker.pick} ${className || ''}`}
     defaultValue={colourOptions.find((item) => color === item.color)}
     label="Pick Color"
+    placeholder="Color"
     options={colourOptions}
     styles={colourStyles}
     onChange={onChange}
@@ -70,12 +71,14 @@ const PickColor = ({ color, onChange }) => (
 
 PickColor.propTypes = {
   color: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  className: PropTypes.string
 };
 
 PickColor.defaultProps = {
   color: '',
-  onChange: () => {}
+  onChange: () => {},
+  className: ''
 };
 
 export default PickColor;

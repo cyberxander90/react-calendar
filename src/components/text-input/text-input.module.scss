@@ -2,10 +2,6 @@
   display: flex;
 }
 
-.text {
-  padding: 10px;
-}
-
 .label {
   display: block;
   font-size: 10px;
@@ -36,11 +32,4 @@
   input {
     border-bottom-color: #f44336 !important;
   }
-}
-
-.error {
-  color: #f44336;
-  font-size: 10px;
-  margin: 0;
-  margin-top: 3px;
 }

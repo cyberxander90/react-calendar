@@ -1,5 +1,8 @@
+@import 'src/styles/variables';
+
 .timer {
   display: flex;
+  font-size: 14px;
 }
 
 .points {
@@ -8,6 +11,10 @@
 }
 
 .text {
-  font-weight: bold;
+  font-size: 10px;
   margin-top: 8px;
+}
+
+.invalid {
+  color: $color-red;
 }
