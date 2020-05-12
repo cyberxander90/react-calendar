@@ -1,0 +1,56 @@
+/* stylelint-disable selector-class-pattern, max-nesting-depth */
+
+.react-timer-select {
+  .react-timer-select__control {
+    border: 0;
+    border-bottom: 1px solid $color-gray;
+    border-radius: 0;
+    box-shadow: none;
+    height: 30px;
+    max-height: 30px;
+    min-height: auto;
+    width: 30px;
+  }
+
+  .react-timer-select__control:hover {
+    border: 0;
+    box-shadow: none;
+  }
+
+  .react-timer-select__control:hover,
+  .react-timer-select__control:focus,
+  .react-timer-select__control:active {
+    border-bottom: 1px solid $color-blue;
+  }
+
+  .react-timer-select__placeholder,
+  .react-timer-select__indicators {
+    display: none;
+  }
+
+  .react-timer-select__value-container {
+    padding: 0;
+  }
+
+  .react-timer-select__menu {
+    margin-top: 0;
+    width: 40px;
+  }
+
+  .react-timer-select__option {
+    padding: 5px 6px;
+
+    &:not(.react-timer-select__option--is-selected):hover {
+      background: #f1f3f4;
+    }
+  }
+
+  .react-timer-select__menu-list {
+    overflow-x: hidden;
+  }
+
+  .react-timer-select__single-value {
+    margin-left: 5px;
+    top: 60%;
+  }
+}

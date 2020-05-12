@@ -1,5 +1,14 @@
+@import './variables';
+@import './normalize';
+@import './react-tiny-popover';
+
+* {
+  box-sizing: border-box;
+  color: $color-black;
+}
+
 body {
-  background: #fff;
+  background: $color-white;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -15,24 +24,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
-}
-
-code {
-  font-family:
-    source-code-pro,
-    Menlo,
-    Monaco,
-    Consolas,
-    'Courier New',
-    monospace;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-* {
-  color: #3c4043;
 }

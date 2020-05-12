@@ -8,17 +8,26 @@ const Popover = ({
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const toggle = () => setIsPopoverOpen(!isPopoverOpen);
 
+  const onClickOutside = (element) => {
+    if (element.target.id.startsWith('react-select')) {
+      return;
+    }
+    toggle();
+  };
+
+  const Content = (
+    <div className={contentClassName}>
+      {content(toggle)}
+    </div>
+  );
+
   return (
     <TinyPopover
       isOpen={isPopoverOpen}
       position={['top', 'right', 'left', 'bottom']}
       padding={10}
-      onClickOutside={toggle}
-      content={(
-        <div className={contentClassName}>
-          {content(toggle)}
-        </div>
-      )}
+      onClickOutside={onClickOutside}
+      content={Content}
     >
       <div
         className={childrenClassName || ''}

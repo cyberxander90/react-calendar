@@ -1,6 +1,7 @@
 import React from 'react';
 import MonthGrid from 'src/components/month-grid';
 import MonthGridCell from 'src/components/month-grid-cell';
+import TimerInput from 'src/components/timer-input';
 import logo from './logo.svg';
 import './App.scss';
 
@@ -9,6 +10,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <img src={logo} className="app-logo" alt="logo" />
+        <TimerInput />
         <MonthGrid cellCmp={MonthGridCell} />
         <p>
           Edit

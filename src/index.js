@@ -1,8 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import './normalize.css';
+import './styles/index.scss';
 import App from 'src/App';
 import * as serviceWorker from './serviceWorker';
 

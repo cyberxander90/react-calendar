@@ -3,7 +3,7 @@
 }
 
 .header {
-  background: #1a73e8;
+  background: $color-blue;
   display: flex;
 
   > * {
@@ -12,8 +12,8 @@
 }
 
 .body {
-  border-bottom: 1px solid #f21010;
-  border-left: 1px solid #f21010;
+  border-bottom: 1px solid $color-red;
+  border-left: 1px solid $color-red;
   display: flex;
   flex-direction: column;
   height: 90vh;
@@ -24,12 +24,12 @@
 }
 
 .row {
-  border-top: 1px solid #f21010;
+  border-top: 1px solid $color-red;
   display: flex;
   overflow: hidden;
 
   > * {
-    border-right: 1px solid #f21010;
+    border-right: 1px solid $color-red;
     width: 100%;
   }
 }
