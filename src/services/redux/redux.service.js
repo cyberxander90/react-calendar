@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export function PendingRequests() {
   this.pending = [];
-  this.arePendingRequests = () => this.pending.length === 0;
+  this.arePendingRequests = () => this.pending.length > 0;
 
   this.add = ({ requestId }) => {
     this.pending.push(requestId);

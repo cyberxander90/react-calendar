@@ -4,10 +4,10 @@ describe('Redux service', () => {
   it('PendingRequest class works correctly', () => {
     const pendingRequests = new PendingRequests();
     expect(pendingRequests.arePendingRequests()).toBeFalsy();
-    expect(pendingRequests.add(1)).toBeTruthy();
-    expect(pendingRequests.add(2)).toBeTruthy();
-    expect(pendingRequests.remove()).toBeFalsy();
-    expect(pendingRequests.remove()).toBeFalsy();
+    expect(pendingRequests.add({ requestId: 1 })).toBeTruthy();
+    expect(pendingRequests.add({ requestId: 2 })).toBeTruthy();
+    expect(pendingRequests.remove({ requestId: 1 })).toBeTruthy();
+    expect(pendingRequests.remove({ requestId: 2 })).toBeFalsy();
     expect(pendingRequests.arePendingRequests()).toBeFalsy();
   });
 
