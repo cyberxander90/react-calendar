@@ -1,9 +1,10 @@
 /* stylelint-disable selector-class-pattern, max-nesting-depth */
+@import 'src/styles/variables';
 
 .react-timer-select {
   .react-timer-select__control {
     border: 0;
-    border-bottom: 1px solid $color-gray;
+    border-bottom: 1px solid $color-red;
     border-radius: 0;
     box-shadow: none;
     height: 30px;
