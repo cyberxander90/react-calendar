@@ -1,6 +1,7 @@
-import { fetchAsyncEvents } from 'src/redux/actions/events.actions';
+import { fetchAsyncEvents, createAsyncEvent } from 'src/redux/actions/events.actions';
 import { createSliceAdapter } from 'src/services/redux/redux.service';
 
 export default createSliceAdapter('event', {
-  fetch: fetchAsyncEvents
+  fetch: fetchAsyncEvents,
+  create: createAsyncEvent
 }).reducer;

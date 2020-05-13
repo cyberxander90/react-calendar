@@ -17,6 +17,6 @@ describe('Redux service', () => {
       fulfilled: 'fulfilled',
       rejected: 'rejected'
     };
-    expect(createSliceAdapter('test', { fetch: { ...action } })).toBeTruthy();
+    expect(createSliceAdapter('test', { fetch: { ...action }, create: { ...action } })).toBeTruthy();
   });
 });

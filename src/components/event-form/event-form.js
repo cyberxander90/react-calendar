@@ -1,86 +1,82 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import TextInput from 'src/components/text-input';
 import TimerInput from 'src/components/timer-input';
 import ColorPicker from 'src/components/pick-color';
+import {
+  validateRemainder,
+  validateStartTime,
+  validateEndTime
+} from './validations';
 
 import styles from './event-form.module.scss';
-
-const getDateTime = ({ minute, hour }) => moment(`${parseInt(hour, 10)}:${parseInt(minute, 10)}`, 'HH:MM');
-
-const validateRemainder = (remainder) => {
-  const validations = [];
-  if (remainder.length === 0) {
-    validations.push('Required');
-  } else if (remainder.length > 30) {
-    validations.push('Max length is 30');
-  }
-  return validations;
-};
-
-const validateFromTimer = ({ minute, hour }) => (!minute || !hour
-  ? ['Invalid time']
-  : []);
-
-const validateToTimer = (toTimer, fromTimer) => {
-  const validations = [];
-  if (!toTimer.minute || !toTimer.hour) {
-    validations.push('Invalid time');
-  } else if (getDateTime(fromTimer) > getDateTime(toTimer)) {
-    validations.push('Invalid range');
-  }
-  return validations;
-};
 
 const EventForm = ({
   remainder: initRemainder,
   color: initColor,
   city: initCity,
-  fromMinute: initFromMinute,
-  fromHour: initFromHour,
-  toMinute: initToMinute,
-  toHour: initToHour,
+  startMinute: initStartMinute,
+  startHour: initStartHour,
+  endMinute: initEndMinute,
+  endHour: initEndHour,
   onSubmit,
   onCancel,
 }) => {
+  // remainder
   const [isFormSubmitted, setFormSubmitted] = useState(false);
   const [remainder, setRemainder] = useState(initRemainder.trim());
   const [remainderErrors, setRemainderErrors] = useState(validateRemainder(remainder));
+
+  // city / color
   const [color, setColor] = useState(initColor);
   const [city, setCity] = useState(initCity);
-  const [fromTimer, setFromTimer] = useState({ minute: initFromMinute, hour: initFromHour });
-  const [fromTimerErrors, setFromTimerErrors] = useState(validateFromTimer(fromTimer));
-  const [toTimer, setToTimer] = useState({ minute: initToMinute, hour: initToHour });
-  const [toTimerErrors, setToTimerErrors] = useState(validateToTimer(toTimer, fromTimer));
 
+  // start time
+  const [startTime, setStartTime] = useState({ minute: initStartMinute, hour: initStartHour });
+  const [startTimeErrors, setStartTimeErrors] = useState(validateStartTime(startTime));
+
+  // end time
+  const [endTime, setEndTime] = useState({ minute: initEndMinute, hour: initEndHour });
+  const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(endTime, startTime));
+
+  // handle remainder change
   const handleRemainderChange = ({ target: { value } }) => {
     const v = value.trim();
     setRemainder(v);
     setRemainderErrors(validateRemainder(v));
   };
 
-  const handleTimerChange = (type) => (timer) => {
+  // handle time change
+  const handleTimeChange = (type) => (timer) => {
     if (type === 'from') {
-      setFromTimer(timer);
-      setFromTimerErrors(validateFromTimer(timer));
-      setToTimerErrors(validateToTimer(toTimer, timer));
+      setStartTime(timer);
+      setStartTimeErrors(validateStartTime(timer));
+      setEndTimeErrors(validateEndTime(endTime, timer));
     } else {
-      setToTimer(timer);
-      setFromTimerErrors(validateFromTimer(fromTimer));
-      setToTimerErrors(validateToTimer(timer, fromTimer));
+      setEndTime(timer);
+      setStartTimeErrors(validateStartTime(startTime));
+      setEndTimeErrors(validateEndTime(timer, startTime));
     }
   };
+
+  const isFormInvalid = () => [
+    remainderErrors,
+    startTimeErrors,
+    endTimeErrors
+  ].some((item) => item.length);
 
   const onFormSubmit = (event) => {
     setFormSubmitted(true);
     event.preventDefault();
+    if (isFormInvalid()) {
+      return;
+    }
     onSubmit({
       remainder,
       color,
       city,
-      fromTimer,
-      toTimer
+      startTime,
+      endTime
     });
   };
 
@@ -101,20 +97,20 @@ const EventForm = ({
       <TimerInput
         text="From"
         className={styles.from}
-        minute={fromTimer.minute}
-        hour={fromTimer.hour}
-        onChangeTimer={handleTimerChange('from')}
+        minute={startTime.minute}
+        hour={startTime.hour}
+        onChangeTimer={handleTimeChange('from')}
         displayValidation={isFormSubmitted}
-        errors={fromTimerErrors}
+        errors={startTimeErrors}
       />
       <TimerInput
         className={styles.to}
         text="To"
-        minute={toTimer.minute}
-        hour={toTimer.hour}
-        onChangeTimer={handleTimerChange('to')}
+        minute={endTime.minute}
+        hour={endTime.hour}
+        onChangeTimer={handleTimeChange('to')}
         displayValidation={isFormSubmitted}
-        errors={toTimerErrors}
+        errors={endTimeErrors}
       />
 
       <TextInput
@@ -144,22 +140,22 @@ const EventForm = ({
 EventForm.propTypes = {
   remainder: PropTypes.string,
   color: PropTypes.string,
-  fromMinute: PropTypes.string,
-  fromHour: PropTypes.string,
-  toMinute: PropTypes.string,
-  toHour: PropTypes.string,
+  startMinute: PropTypes.string,
+  startHour: PropTypes.string,
+  endMinute: PropTypes.string,
+  endHour: PropTypes.string,
   city: PropTypes.string,
   onSubmit: PropTypes.func,
   onCancel: PropTypes.func
 };
 
 EventForm.defaultProps = {
-  remainder: 'hi',
+  remainder: '',
   color: '',
-  fromMinute: '01',
-  fromHour: '01',
-  toMinute: '01',
-  toHour: '01',
+  startMinute: '01',
+  startHour: '01',
+  endMinute: '01',
+  endHour: '01',
   city: '',
   onSubmit: () => {},
   onCancel: () => {}

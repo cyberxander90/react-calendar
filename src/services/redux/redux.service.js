@@ -19,13 +19,14 @@ export function PendingRequests() {
   };
 }
 
-export const createSliceAdapter = (name, { fetch }) => {
+export const createSliceAdapter = (name, { fetch, create }) => {
   const pendingRequests = new PendingRequests();
 
   return createSlice({
     name,
     initialState: { data: { }, loading: null, errors: { } },
     extraReducers: {
+      // fetch
       [fetch.pending]: (state, { meta }) => {
         state.loading = pendingRequests.add(meta);
       },
@@ -37,6 +38,18 @@ export const createSliceAdapter = (name, { fetch }) => {
       },
       [fetch.rejected]: (state, { meta: { requestId } }) => {
         state.errors[requestId] = 'Failed to fetch data';
+        state.loading = pendingRequests.remove({ requestId });
+      },
+      // create
+      [create.pending]: (state, { meta }) => {
+        state.loading = pendingRequests.add(meta);
+      },
+      [create.fulfilled]: (state, { payload, meta }) => {
+        state.data[payload.id] = { ...state.data[payload.id], ...payload };
+        state.loading = pendingRequests.remove(meta);
+      },
+      [create.rejected]: (state, { meta: { requestId } }) => {
+        state.errors[requestId] = 'Failed to create';
         state.loading = pendingRequests.remove({ requestId });
       }
     }
