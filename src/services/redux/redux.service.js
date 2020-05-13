@@ -19,38 +19,43 @@ export function PendingRequests() {
   };
 }
 
-export const createSliceAdapter = (name, { fetch, create }) => {
+export const createSliceAdapter = (name, { fetch, create, edit }) => {
   const pendingRequests = new PendingRequests();
+
+  const pendingAndRejected = [
+    fetch,
+    create,
+    edit
+  ].reduce((acc, action) => ({
+    ...acc,
+    [action.pending]: (state, { meta }) => {
+      state.loading = pendingRequests.add(meta);
+    },
+    [action.rejected]: (state, { meta: { requestId } }) => {
+      state.errors[requestId] = 'Failed!';
+      state.loading = pendingRequests.remove({ requestId });
+    }
+  }), {});
+
+  const createAndEditFulfilled = [create, edit].reduce((acc, action) => ({
+    ...acc,
+    [action.fulfilled]: (state, { payload, meta }) => {
+      state.data[payload.id] = { ...state.data[payload.id], ...payload };
+      state.loading = pendingRequests.remove(meta);
+    }
+  }), {});
 
   return createSlice({
     name,
     initialState: { data: { }, loading: null, errors: { } },
     extraReducers: {
-      // fetch
-      [fetch.pending]: (state, { meta }) => {
-        state.loading = pendingRequests.add(meta);
-      },
+      ...pendingAndRejected,
+      ...createAndEditFulfilled,
       [fetch.fulfilled]: (state, { payload, meta }) => {
         payload.forEach((item) => {
           state.data[item.id] = { ...state.data[item.id], ...item };
         });
         state.loading = pendingRequests.remove(meta);
-      },
-      [fetch.rejected]: (state, { meta: { requestId } }) => {
-        state.errors[requestId] = 'Failed to fetch data';
-        state.loading = pendingRequests.remove({ requestId });
-      },
-      // create
-      [create.pending]: (state, { meta }) => {
-        state.loading = pendingRequests.add(meta);
-      },
-      [create.fulfilled]: (state, { payload, meta }) => {
-        state.data[payload.id] = { ...state.data[payload.id], ...payload };
-        state.loading = pendingRequests.remove(meta);
-      },
-      [create.rejected]: (state, { meta: { requestId } }) => {
-        state.errors[requestId] = 'Failed to create';
-        state.loading = pendingRequests.remove({ requestId });
       }
     }
   });

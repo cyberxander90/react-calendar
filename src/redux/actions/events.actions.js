@@ -18,3 +18,11 @@ export const createAsyncEvent = createAsyncThunk(
     return response.data;
   }
 );
+
+export const editAsyncEvent = createAsyncThunk(
+  'events/edit',
+  async (event) => {
+    const response = await axios.post(`http://localhost:5000/api/v1/events/${event.id}`, event);
+    return response.data;
+  }
+);

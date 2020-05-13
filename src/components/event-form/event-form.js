@@ -12,6 +12,7 @@ import {
 import styles from './event-form.module.scss';
 
 const EventForm = ({
+  id,
   remainder: initRemainder,
   color: initColor,
   city: initCity,
@@ -37,7 +38,7 @@ const EventForm = ({
 
   // end time
   const [endTime, setEndTime] = useState({ minute: initEndMinute, hour: initEndHour });
-  const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(endTime, startTime));
+  const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(startTime, endTime));
 
   // handle remainder change
   const handleRemainderChange = ({ target: { value } }) => {
@@ -47,15 +48,15 @@ const EventForm = ({
   };
 
   // handle time change
-  const handleTimeChange = (type) => (timer) => {
+  const handleTimeChange = (type) => (currentTime) => {
     if (type === 'from') {
-      setStartTime(timer);
-      setStartTimeErrors(validateStartTime(timer));
-      setEndTimeErrors(validateEndTime(endTime, timer));
+      setStartTime(currentTime);
+      setStartTimeErrors(validateStartTime(currentTime));
+      setEndTimeErrors(validateEndTime(currentTime, endTime));
     } else {
-      setEndTime(timer);
+      setEndTime(currentTime);
       setStartTimeErrors(validateStartTime(startTime));
-      setEndTimeErrors(validateEndTime(timer, startTime));
+      setEndTimeErrors(validateEndTime(startTime, currentTime));
     }
   };
 
@@ -66,17 +67,19 @@ const EventForm = ({
   ].some((item) => item.length);
 
   const onFormSubmit = (event) => {
-    setFormSubmitted(true);
     event.preventDefault();
+
+    setFormSubmitted(true);
     if (isFormInvalid()) {
       return;
     }
+
     onSubmit({
       remainder,
       color,
       city,
-      startTime,
-      endTime
+      startDate: `${id} ${startTime.hour}:${startTime.minute}`,
+      endDate: `${id} ${endTime.hour}:${endTime.minute}`,
     });
   };
 
@@ -138,6 +141,7 @@ const EventForm = ({
 
 
 EventForm.propTypes = {
+  id: PropTypes.string.isRequired,
   remainder: PropTypes.string,
   color: PropTypes.string,
   startMinute: PropTypes.string,

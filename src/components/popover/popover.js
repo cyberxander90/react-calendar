@@ -10,9 +10,10 @@ const Popover = ({
 
   const onClickOutside = (element) => {
     if (element.target.id.startsWith('react-select')) {
-      return;
+      // console.log('click outsue');
+      // console.log(element.target);
     }
-    toggle();
+    // toggle();
   };
 
   const Content = (

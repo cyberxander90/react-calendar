@@ -5,7 +5,7 @@ import moment from 'moment';
 import { fetchAsyncEvents } from 'src/redux/actions/events.actions';
 import { getGridDates } from 'src/services/grid-service';
 import { MonthGrid } from 'src/components/month-grid';
-import MonthGridCell from 'src/components/month-grid-cell';
+import MonthGridCellConnected from 'src/components/month-grid-cell';
 
 const getInitData = (dateStr, startOnMonday) => () => {
   const date = moment(dateStr);
@@ -34,7 +34,7 @@ const MonthGridConnected = ({
       grid={dates}
       startOnMonday={startOnMonday}
       monthValue={date.month()}
-      cellCmp={MonthGridCell}
+      cellCmp={MonthGridCellConnected}
     />
   );
 };

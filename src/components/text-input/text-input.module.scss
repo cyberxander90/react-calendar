@@ -4,8 +4,15 @@
 
 .label {
   display: block;
-  font-size: 10px;
+  font-size: 16px;
   padding: 0;
+  transform: translateY(20px);
+  transition: 0.3s font-size, 0.3s transform;
+}
+
+.focus {
+  font-size: 10px;
+  transform: translateY(0);
 }
 
 .input {

@@ -65,7 +65,7 @@ const PickColor = ({ color, className, onChange }) => (
     placeholder="Color"
     options={colourOptions}
     styles={colourStyles}
-    onChange={onChange}
+    onChange={(item) => onChange(item.color)}
   />
 );
 

@@ -46,7 +46,7 @@ const MonthGrid = ({
   );
 
   return (
-    <div className={styles.monthGrid}>
+    <div className={styles.grid}>
       <Header />
       <Body />
     </div>

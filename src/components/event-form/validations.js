@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-const getDateTime = ({ minute, hour }) => moment(`${parseInt(hour, 10)}:${parseInt(minute, 10)}`, 'HH:MM');
+const getDateTime = ({ minute, hour }) => moment(`${hour}:${minute}`, 'HH:mm');
 
 export const validateRemainder = (remainder) => {
   const validations = [];
@@ -20,7 +20,7 @@ export const validateEndTime = (startTime, endTime) => {
   const validations = [];
   if (!startTime.minute || !startTime.hour) {
     validations.push('Invalid time');
-  } else if (getDateTime(endTime) > getDateTime(startTime)) {
+  } else if (getDateTime(startTime) > getDateTime(endTime)) {
     validations.push('Invalid range');
   }
   return validations;

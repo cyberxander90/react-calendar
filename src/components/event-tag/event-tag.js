@@ -3,17 +3,16 @@ import PropTypes from 'prop-types';
 import { withResizeDetector } from 'react-resize-detector';
 import EventTagItem from 'src/components/event-tag-item';
 import Popover from 'src/components/popover';
-import moment from 'moment';
 
 import styles from './event-tag.module.scss';
-
-const getTime = (dateTime) => moment(dateTime).format('hh:mm a');
 
 const ITEM_HEIGHT = 30;
 
 const getMaxItemsToDisplay = (height) => Math.floor((height - 30) / ITEM_HEIGHT);
 
-const EventTag = ({ events, height, displayAll }) => {
+const EventTag = ({
+  id, events, height, displayAll
+}) => {
   const maxItemsToDisplay = height && !displayAll ? getMaxItemsToDisplay(height) : events.length;
   const eventsToDisplay = events.slice(0, maxItemsToDisplay);
   const missingEvents = events.slice(maxItemsToDisplay).length;
@@ -22,10 +21,9 @@ const EventTag = ({ events, height, displayAll }) => {
     <ul>
       {eventsToDisplay.map((event) => (
         <EventTagItem
+          id={id}
           key={event.id}
-          color={event.color}
-          remainder={event.remainder}
-          time={getTime(event.dateTime)}
+          event={event}
         />
       ))}
       { missingEvents > 0 && (
@@ -34,6 +32,7 @@ const EventTag = ({ events, height, displayAll }) => {
             content={(toggle) => (
               <div className={styles.all}>
                 <EventTag
+                  id={id}
                   displayAll
                   events={events}
                 />
@@ -53,6 +52,7 @@ const EventTag = ({ events, height, displayAll }) => {
 };
 
 EventTag.propTypes = {
+  id: PropTypes.string.isRequired,
   events: PropTypes.arrayOf().isRequired,
   height: PropTypes.number.isRequired,
   displayAll: PropTypes.bool

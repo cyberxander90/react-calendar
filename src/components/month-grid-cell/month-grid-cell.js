@@ -7,16 +7,15 @@ import EventTag from 'src/components/event-tag';
 import styles from './month-grid-cell.module.scss';
 
 const MonthGridCell = ({
-  day, isCurrentMonth, tabIndex, events, onCreateEvent
+  id, day, isCurrentMonth, tabIndex, events, onCreateEvent
 }) => (
-  <div className={`${isCurrentMonth ? '' : styles.disabled}`}>
+  <div className={`${styles.cell} ${isCurrentMonth ? '' : styles.disabled}`}>
     <Popover
       tabIndex={tabIndex}
       content={(toggle) => (
         <EventForm
-          text="hello world"
+          id={id}
           onSubmit={(event) => {
-            console.log(event);
             onCreateEvent(event);
             toggle();
           }}
@@ -25,11 +24,12 @@ const MonthGridCell = ({
     >
       <div>{day}</div>
     </Popover>
-    <EventTag events={events} />
+    <EventTag id={id} events={events} />
   </div>
 );
 
 MonthGridCell.propTypes = {
+  id: PropTypes.string.isRequired,
   day: PropTypes.number.isRequired,
   isCurrentMonth: PropTypes.bool.isRequired,
   tabIndex: PropTypes.number.isRequired,

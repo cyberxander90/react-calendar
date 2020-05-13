@@ -14,12 +14,8 @@ const MonthGridCellConnected = ({ id, ...otherProps }) => {
   const events = Object.keys(data)
     .map((key) => data[key])
     .filter(({ startDate }) => moment(startDate).format('YYYY-MM-DD') === id);
-  const onCreateEvent = ({ startTime, endTime, ...otherProps }) => {
-    dispatch(createAsyncEvent({
-      startDate: `${id} ${startTime.hour}:${startTime.minute}`,
-      endDate: `${id} ${endTime.hour}:${endTime.minute}`,
-      ...otherProps
-    }));
+  const onCreateEvent = (event) => {
+    dispatch(createAsyncEvent(event));
   };
 
   return <MonthGridCell id={id} events={events} onCreateEvent={onCreateEvent} {...otherProps} />;
