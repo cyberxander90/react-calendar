@@ -20,7 +20,8 @@ describe('Redux service', () => {
     expect(createSliceAdapter('test', {
       fetch: { ...action },
       create: { ...action },
-      edit: { ...action }
+      edit: { ...action },
+      remove: { ...action },
     })).toBeTruthy();
   });
 });
