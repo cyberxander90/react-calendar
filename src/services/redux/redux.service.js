@@ -19,13 +19,16 @@ export function PendingRequests() {
   };
 }
 
-export const createSliceAdapter = (name, { fetch, create, edit }) => {
+export const createSliceAdapter = (name, {
+  fetch, create, edit, remove
+}) => {
   const pendingRequests = new PendingRequests();
 
   const pendingAndRejected = [
     fetch,
     create,
-    edit
+    edit,
+    remove
   ].reduce((acc, action) => ({
     ...acc,
     [action.pending]: (state, { meta }) => {
@@ -55,6 +58,10 @@ export const createSliceAdapter = (name, { fetch, create, edit }) => {
         payload.forEach((item) => {
           state.data[item.id] = { ...state.data[item.id], ...item };
         });
+        state.loading = pendingRequests.remove(meta);
+      },
+      [remove.fulfilled]: (state, { payload: { id }, meta }) => {
+        delete state.data[id];
         state.loading = pendingRequests.remove(meta);
       }
     }

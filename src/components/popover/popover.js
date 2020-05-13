@@ -8,12 +8,12 @@ const Popover = ({
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const toggle = () => setIsPopoverOpen(!isPopoverOpen);
 
-  const onClickOutside = (element) => {
-    if (element.target.id.startsWith('react-select')) {
-      // console.log('click outsue');
-      // console.log(element.target);
+  const onClickOutside = ({ target }) => {
+    if (target.id.startsWith('react-select')
+      || target.getAttribute('data-tiny-popover')) {
+      return;
     }
-    // toggle();
+    toggle();
   };
 
   const Content = (

@@ -1,13 +1,22 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
+/* eslint-disable no-alert */
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import Popover from 'src/components/popover';
-import { editAsyncEvent } from 'src/redux/actions/events.actions';
+import { editAsyncEvent, deleteAsyncEvent } from 'src/redux/actions/events.actions';
 
 import styles from './event-tag-item.module.scss';
 import EventForm from '../event-form';
+
+const deleteEvent = (dispatch, event) => () => {
+  if (confirm('Do you want to delete the event?')) {
+    dispatch(deleteAsyncEvent(event));
+  }
+};
 
 const A = ({ id, event, toggle }) => {
   const [view, setView] = useState(0);
@@ -15,6 +24,7 @@ const A = ({ id, event, toggle }) => {
   return (
     <div>
       <button type="button" onClick={toggle}>close</button>
+      <button type="button" onClick={deleteEvent(dispatch, event)}>delete</button>
       {view ? (
         <div>
           <button type="button" onClick={() => setView(0)}>cancelar</button>

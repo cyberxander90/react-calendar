@@ -129,7 +129,7 @@ const EventForm = ({
         onChange={setColor}
       />
 
-      <button type="button" onClick={onCancel}>
+      <button type="button" onClick={onCancel} data-tiny-popover>
         Cancel
       </button>
       <button type="submit">
