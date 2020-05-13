@@ -7,23 +7,28 @@ import EventTag from 'src/components/event-tag';
 import styles from './month-grid-cell.module.scss';
 
 const MonthGridCell = ({
-  id, day, isCurrentMonth, tabIndex, events, onCreateEvent
+  id, day, isCurrentMonth, tabIndex, events, onCreateEvent, onDeleteAllEvents
 }) => (
   <div className={`${styles.cell} ${isCurrentMonth ? '' : styles.disabled}`}>
-    <Popover
-      tabIndex={tabIndex}
-      content={(toggle) => (
-        <EventForm
-          id={id}
-          onSubmit={(event) => {
-            onCreateEvent(event);
-            toggle();
-          }}
-        />
-      )}
-    >
+    <div className={styles.header}>
       <div>{day}</div>
-    </Popover>
+      <Popover
+        childrenClassName={styles.actions}
+        tabIndex={tabIndex}
+        content={(toggle) => (
+          <EventForm
+            id={id}
+            onSubmit={(event) => {
+              onCreateEvent(event);
+              toggle();
+            }}
+          />
+        )}
+      >
+        <div>+</div>
+      </Popover>
+      <div role="button" onClick={onDeleteAllEvents} onKeyDown={() => {}} tabIndex={0}>-</div>
+    </div>
     <EventTag id={id} events={events} />
   </div>
 );
@@ -34,11 +39,13 @@ MonthGridCell.propTypes = {
   isCurrentMonth: PropTypes.bool.isRequired,
   tabIndex: PropTypes.number.isRequired,
   events: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onCreateEvent: PropTypes.func
+  onCreateEvent: PropTypes.func,
+  onDeleteAllEvents: PropTypes.func
 };
 
 MonthGridCell.defaultProps = {
-  onCreateEvent: () => {}
+  onCreateEvent: () => {},
+  onDeleteAllEvents: () => {}
 };
 
 export default MonthGridCell;

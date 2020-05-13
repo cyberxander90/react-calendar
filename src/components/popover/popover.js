@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TinyPopover from 'react-tiny-popover';
 
 const Popover = ({
-  content, children, tabIndex, childrenClassName, contentClassName
+  content, children, tabIndex, childrenClassName, contentClassName, className
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const toggle = () => setIsPopoverOpen(!isPopoverOpen);
@@ -25,6 +25,7 @@ const Popover = ({
 
   return (
     <TinyPopover
+      contentClassName={className}
       isOpen={isPopoverOpen}
       position={['top', 'right', 'left', 'bottom']}
       padding={10}
@@ -52,13 +53,15 @@ Popover.propTypes = {
   content: PropTypes.func.isRequired,
   tabIndex: PropTypes.number,
   childrenClassName: PropTypes.string,
-  contentClassName: PropTypes.string
+  contentClassName: PropTypes.string,
+  className: PropTypes.string
 };
 
 Popover.defaultProps = {
   tabIndex: 0,
   childrenClassName: '',
-  contentClassName: ''
+  contentClassName: '',
+  className: ''
 };
 
 export default Popover;

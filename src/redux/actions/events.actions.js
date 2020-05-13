@@ -34,3 +34,11 @@ export const deleteAsyncEvent = createAsyncThunk(
     return event;
   }
 );
+
+export const deleteAllAsyncEvent = createAsyncThunk(
+  'events/delete',
+  async (id) => {
+    await axios.delete(`http://localhost:5000/api/v1/events/ALL-${id}`);
+    return { id };
+  }
+);

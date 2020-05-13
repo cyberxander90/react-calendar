@@ -1,10 +1,14 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-undef */
+/* eslint-disable no-alert */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { createAsyncEvent } from 'src/redux/actions/events.actions';
+import { createAsyncEvent, deleteAllAsyncEvent } from 'src/redux/actions/events.actions';
 import MonthGridCell from './month-grid-cell';
 
 const MonthGridCellConnected = ({ id, ...otherProps }) => {
@@ -17,8 +21,21 @@ const MonthGridCellConnected = ({ id, ...otherProps }) => {
   const onCreateEvent = (event) => {
     dispatch(createAsyncEvent(event));
   };
+  const onDeleteAllEvents = () => {
+    if (confirm('Do you want to delete all events in this day?')) {
+      dispatch(deleteAllAsyncEvent(id));
+    }
+  };
 
-  return <MonthGridCell id={id} events={events} onCreateEvent={onCreateEvent} {...otherProps} />;
+  return (
+    <MonthGridCell
+      id={id}
+      events={events}
+      onCreateEvent={onCreateEvent}
+      onDeleteAllEvents={onDeleteAllEvents}
+      {...otherProps}
+    />
+  );
 };
 
 MonthGridCellConnected.propTypes = {

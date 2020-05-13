@@ -20,7 +20,7 @@ export function PendingRequests() {
 }
 
 export const createSliceAdapter = (name, {
-  fetch, create, edit, remove
+  fetch, create, edit, remove, getExtraReducers = () => {}
 }) => {
   const pendingRequests = new PendingRequests();
 
@@ -63,7 +63,8 @@ export const createSliceAdapter = (name, {
       [remove.fulfilled]: (state, { payload: { id }, meta }) => {
         delete state.data[id];
         state.loading = pendingRequests.remove(meta);
-      }
+      },
+      ...getExtraReducers(pendingRequests)
     }
   });
 };
