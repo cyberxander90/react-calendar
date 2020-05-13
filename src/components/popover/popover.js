@@ -9,6 +9,7 @@ const Popover = ({
   const toggle = () => setIsPopoverOpen(!isPopoverOpen);
 
   const onClickOutside = ({ target }) => {
+    // console.log(target);
     if (target.id.startsWith('react-select')
       || target.getAttribute('data-tiny-popover')) {
       return;

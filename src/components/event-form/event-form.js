@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import TextInput from 'src/components/text-input';
 import TimerInput from 'src/components/timer-input';
 import ColorPicker from 'src/components/pick-color';
+import moment from 'moment';
+import DayPicker from 'react-daypicker';
 import {
   validateRemainder,
   validateStartTime,
@@ -10,6 +12,7 @@ import {
 } from './validations';
 
 import styles from './event-form.module.scss';
+import 'react-daypicker/lib/DayPicker.css';
 
 const EventForm = ({
   id,
@@ -39,6 +42,8 @@ const EventForm = ({
   // end time
   const [endTime, setEndTime] = useState({ minute: initEndMinute, hour: initEndHour });
   const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(startTime, endTime));
+
+  const [date, setDate] = useState(moment(id).toDate());
 
   // handle remainder change
   const handleRemainderChange = ({ target: { value } }) => {
@@ -73,13 +78,14 @@ const EventForm = ({
     if (isFormInvalid()) {
       return;
     }
+    const submitId = moment(date).format('YYYY-MM-DD');
 
     onSubmit({
       remainder,
       color,
       city,
-      startDate: `${id} ${startTime.hour}:${startTime.minute}`,
-      endDate: `${id} ${endTime.hour}:${endTime.minute}`,
+      startDate: `${submitId} ${startTime.hour}:${startTime.minute}`,
+      endDate: `${submitId} ${endTime.hour}:${endTime.minute}`,
     });
   };
 
@@ -123,6 +129,12 @@ const EventForm = ({
         value={city}
         onChange={({ target: { value } }) => setCity(value)}
       />
+
+      <DayPicker
+        active={date}
+        onDayClick={(value) => setDate(moment(value).toDate())}
+      />
+
       <ColorPicker
         className={styles.color}
         color={color}
