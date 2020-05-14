@@ -1,0 +1,19 @@
+.weather {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  justify-content: space-evenly;
+}
+
+.features {
+  display: flex;
+
+  > li {
+    margin-right: 10px;
+  }
+}
+
+.image {
+  height: 45px;
+  width: 45px;
+}

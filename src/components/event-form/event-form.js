@@ -5,6 +5,8 @@ import TimerInput from 'src/components/timer-input';
 import ColorPicker from 'src/components/pick-color';
 import moment from 'moment';
 import DayPicker from 'react-daypicker';
+import Weather from 'src/components/weather';
+import { ReactComponent as CalendarIcon } from 'src/images/calendar.svg';
 import {
   validateRemainder,
   validateStartTime,
@@ -44,6 +46,7 @@ const EventForm = ({
   const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(startTime, endTime));
 
   const [date, setDate] = useState(moment(id).toDate());
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   // handle remainder change
   const handleRemainderChange = ({ target: { value } }) => {
@@ -130,16 +133,23 @@ const EventForm = ({
         onChange={({ target: { value } }) => setCity(value)}
       />
 
-      <DayPicker
-        active={date}
-        onDayClick={(value) => setDate(moment(value).toDate())}
-      />
+      <span title="Toggle Date Picker">
+        <CalendarIcon style={{ opacity: showDatePicker ? 0.3 : 1 }} onClick={() => setShowDatePicker(!showDatePicker)} type="button" />
+      </span>
+      {showDatePicker && (
+        <DayPicker
+          active={date}
+          onDayClick={(value) => setDate(moment(value).toDate())}
+        />
+      )}
 
       <ColorPicker
         className={styles.color}
         color={color}
         onChange={setColor}
       />
+
+      <Weather city={city} date={moment(date).format('YYYY-MM-DD')} ms={600} />
 
       <button type="button" onClick={onCancel} data-tiny-popover>
         Cancel
