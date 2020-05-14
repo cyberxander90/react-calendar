@@ -36,9 +36,9 @@ export const deleteAsyncEvent = createAsyncThunk(
 );
 
 export const deleteAllAsyncEvent = createAsyncThunk(
-  'events/delete',
+  'events/deleteAll',
   async (id) => {
-    await axios.delete(`http://localhost:5000/api/v1/events/ALL-${id}`);
+    await axios.delete(`http://localhost:5000/api/v1/events?date=${id}`);
     return { id };
   }
 );
