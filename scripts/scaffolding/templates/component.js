@@ -1,16 +1,20 @@
-const getTemplate = ({ paramCase, pascalCase, camelCase }) => `import React from 'react';
+const getTemplate = ({ paramCase, pascalCase, camelCase }) => `import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './${paramCase}.module.scss';
 
-const ${pascalCase} = ({ name }) => <div className={styles.${camelCase}}>{name}</div>;
+const ${pascalCase} = ({ name }) => {
+  return (
+    <div className={styles.${camelCase}}>{name}</div>
+  );
+};
 
 ${pascalCase}.propTypes = {
   name: PropTypes.string
 };
 
 ${pascalCase}.defaultProps = {
-  name: ${pascalCase}.name
+  name: ''
 };
 
 export default ${pascalCase};

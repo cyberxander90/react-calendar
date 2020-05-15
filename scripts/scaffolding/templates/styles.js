@@ -1,5 +1,5 @@
 const getTemplate = ({ paramCase }) => `.${paramCase} {
-  font-size: 20px;
+  
 }
 `;
 

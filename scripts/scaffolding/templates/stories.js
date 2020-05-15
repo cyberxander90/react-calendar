@@ -1,14 +1,17 @@
 const getTemplate = ({ paramCase, pascalCase }) => `import React from 'react';
-import ${pascalCase} from './${paramCase}';
 import { withKnobs, text } from '@storybook/addon-knobs';
+import ${pascalCase} from './${paramCase}';
 
 export default {
   title: ${pascalCase}.name,
   decorators: [withKnobs]
 };
 
-export const Default = () => <${pascalCase} />;
-export const ${pascalCase}WithName = () => <${pascalCase} name={text('Text', 'hello world')} />;
+export const Default = () => {
+  return (
+    <${pascalCase} />
+  );
+};
 `;
 
 const getFileName = ({ paramCase }) => `${paramCase}.stories.js`;

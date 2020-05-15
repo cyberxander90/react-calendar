@@ -4,9 +4,8 @@ import ${pascalCase} from './${paramCase}';
 
 describe(\`Test \${${pascalCase}.name} component\`, () => {
   test('renders correctly', () => {
-    const { getByText } = render(<${pascalCase} />);
-    const element = getByText(/${pascalCase}/i);
-    expect(element).toBeInTheDocument();
+    const { container } = render(<${pascalCase} />);
+    expect(container).toBeTruthy();
   });
 });
 `;

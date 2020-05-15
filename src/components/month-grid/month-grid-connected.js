@@ -7,7 +7,7 @@ import { getGridDates } from 'src/services/grid-service';
 import { MonthGrid } from 'src/components/month-grid';
 import MonthGridCellConnected from 'src/components/month-grid-cell';
 
-const getInitData = (dateStr, startOnMonday) => () => {
+const getInitData = (dateStr, startOnMonday) => {
   const date = moment(dateStr);
   const dates = getGridDates({ date, startOnMonday });
   return { date, dates };
@@ -23,17 +23,21 @@ const MonthGridConnected = ({
   dateStr, startOnMonday
 }) => {
   const dispatch = useDispatch();
-  const [{ date, dates }] = useState(getInitData(dateStr, startOnMonday));
+  const [month, setMonth] = useState(null);
+  const [gridDates, setGridDates] = useState(null);
 
   useEffect(() => {
+    const { date, dates } = getInitData(dateStr, startOnMonday);
+    setMonth(date.month());
+    setGridDates(dates);
     dispatch(fetchEvents(dates));
-  }, [dates, dispatch]);
+  }, [dispatch, dateStr, startOnMonday]);
 
-  return (
+  return gridDates && month !== null && (
     <MonthGrid
-      grid={dates}
+      grid={gridDates}
       startOnMonday={startOnMonday}
-      monthValue={date.month()}
+      monthValue={month}
       cellCmp={MonthGridCellConnected}
     />
   );
