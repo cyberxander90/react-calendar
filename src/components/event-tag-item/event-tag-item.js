@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-undef */
 /* eslint-disable no-alert */
@@ -7,10 +8,15 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import Popover from 'src/components/popover';
+import {
+  CloseIcon, TrashIcon, BackIcon, EditIcon
+} from 'src/components/icons';
 import { editAsyncEvent, deleteAsyncEvent } from 'src/redux/actions/events.actions';
-
 import styles from './event-tag-item.module.scss';
 import EventForm from '../event-form';
+import Tooltip from '../tooltip';
+import EventDetails from '../event-details';
+import ColorTag from '../color-tag';
 
 const deleteEvent = (dispatch, event) => () => {
   if (confirm('Do you want to delete the event?')) {
@@ -18,16 +24,53 @@ const deleteEvent = (dispatch, event) => () => {
   }
 };
 
-const A = ({ id, event, toggle }) => {
+const EventTagItemContent = ({ id, event, toggle }) => {
   const [view, setView] = useState(0);
   const dispatch = useDispatch();
   return (
     <div>
-      <button type="button" onClick={toggle}>close</button>
-      <button type="button" onClick={deleteEvent(dispatch, event)}>delete</button>
+      <div className={styles.actions}>
+        {view ? (
+          <Tooltip
+            text="back"
+            onClick={() => setView(0)}
+            inline
+            className="action-icon"
+          >
+            <BackIcon data-keep-popover />
+          </Tooltip>
+        ) : (
+          <Tooltip
+            text="edit"
+            onClick={() => setView(1)}
+            inline
+            className="action-icon"
+          >
+            <EditIcon data-keep-popover />
+          </Tooltip>
+        )}
+
+        <Tooltip
+          text="delete event"
+          onClick={deleteEvent(dispatch, event)}
+          inline
+          className="action-icon"
+        >
+          <TrashIcon data-keep-popover />
+        </Tooltip>
+
+        <Tooltip
+          text="close"
+          onClick={toggle}
+          inline
+          className="action-icon"
+        >
+          <CloseIcon data-keep-popover />
+        </Tooltip>
+      </div>
+
       {view ? (
         <div>
-          <button type="button" onClick={() => setView(0)}>cancelar</button>
           <EventForm
             id={id}
             remainder={event.remainder}
@@ -42,33 +85,29 @@ const A = ({ id, event, toggle }) => {
           />
         </div>
       ) : (
-        <div className={styles.all}>
-          <button type="button" onClick={() => setView(1)}>edit</button>
-          <div>{event.color}</div>
-          <div>{event.startDate}</div>
-          <div>{event.endDate}</div>
-          <div>{event.remainder}</div>
-        </div>
+        <EventDetails {...event} />
       )}
-
     </div>
   );
 };
 
 const EventTagItem = ({ id, event }) => {
-  const { color, time, remainder } = event;
+  const { color, startDate, remainder } = event;
   return (
     <li className={styles.li}>
       <Popover
+        displayClose={false}
         content={(toggle) => (
-          <A id={id} toggle={toggle} event={event} />
+          <EventTagItemContent id={id} toggle={toggle} event={event} />
         )}
       >
-        <div>
-          <span className={styles.color} style={color ? { background: color } : {}} />
-          <span className={styles.time}>{time}</span>
-          <span className={styles.reminder}>{remainder}</span>
-        </div>
+        <>
+          <ColorTag color={color} className={styles.color} />
+          <span className={styles.reminder}>
+            {`${moment(startDate).format('HH:mm')} `}
+            <strong>{remainder}</strong>
+          </span>
+        </>
       </Popover>
     </li>
   );

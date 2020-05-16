@@ -1,4 +1,39 @@
-/* stylelint-disable block-no-empty */
-.calendar {
+.arrow {
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: 35px;
+  padding: 10px 12px;
+  width: 35px;
 
+  &:hover {
+    background: #f6f6f6;
+  }
+}
+
+.date {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 28px;
+  margin: 0 10px;
+  width: 170px;
+}
+
+.today {
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-left: 20px;
+  padding: 8px;
+
+  &:hover {
+    background: #f2f3f4;
+  }
+}
+
+.header {
+  padding: 10px 0;
 }

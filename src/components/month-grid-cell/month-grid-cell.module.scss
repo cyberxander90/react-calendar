@@ -1,16 +1,49 @@
 
+.actions {
+  display: flex;
+  margin-left: auto;
+  margin-right: 6px;
+
+  /* margin: 3px 6px 0 0; */
+  margin-top: 3px;
+  visibility: hidden;
+}
+
+.action {
+  cursor: pointer;
+  margin-left: 6px;
+}
+
 .cell {
   overflow: hidden;
+
+  > div {
+    height: 100%;
+  }
+
+  &:hover .actions {
+    visibility: visible;
+  }
 }
 
 .disabled {
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .header {
   display: flex;
 }
 
-.actions {
-  margin-left: auto;
+.day {
+  font-weight: bold;
+  margin-left: 6px;
+  margin-top: 3px;
+}
+
+.weekend {
+  background: #f2f2f2;
+
+  .day {
+    color: #1b73e8;
+  }
 }

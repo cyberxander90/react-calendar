@@ -1,5 +1,7 @@
 import React from 'react';
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { withKnobs } from '@storybook/addon-knobs';
+import { getGridDates } from 'src/services/grid-service';
+import moment from 'moment';
 import MonthGrid from './month-grid';
 
 export default {
@@ -13,11 +15,18 @@ const styles = (isCurrentMonth) => ({
   border: '1px solid black'
 });
 
-export const Default = () => <MonthGrid dateStr={text('dateStr like 2020-05-20', undefined)} />;
+const gridDates = getGridDates({ date: moment(), startOnMonday: false });
+
+export const Default = () => (
+  <MonthGrid
+    grid={gridDates}
+    monthValue={moment().month()}
+  />
+);
 export const MonthGridWithCustomCmp = () => (
   <MonthGrid
-    dateStr={text('dateStr like 2020-05-20', undefined)}
-    startOnMonday={boolean('Start On Monday', false)}
+    grid={gridDates}
+    monthValue={moment().month()}
     cellCmp={({ day, isCurrentMonth }) => <div style={styles(isCurrentMonth)}>{day}</div>}
     cellHeaderCmp={({ day }) => <div style={{ background: '#150EED', }}>{day}</div>}
   />

@@ -3,15 +3,13 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import Popover from './popover';
 
 describe(`Test ${Popover.name} component`, () => {
-  test('renders correctly', async () => {
+  test('renders correctly', () => {
     const { getByText } = render(
       <Popover
-        tabIndex={0}
-        childrenClassName="my-class"
         content={(toggle) => (
           <div>
-            <span>my content</span>
-            <button type="button" onClick={toggle}>Close</button>
+            <button onClick={toggle} type="button">Dismiss</button>
+            my content
           </div>
         )}
       >
@@ -22,7 +20,7 @@ describe(`Test ${Popover.name} component`, () => {
     expect(element).toBeInTheDocument();
     fireEvent.click(element);
     expect(screen.getByText(/my content/i)).toBeVisible();
-    fireEvent.click(screen.getByText(/Close/i));
+    fireEvent.click(screen.getByText(/Dismiss/i));
     expect(screen.getByText(/my content/i)).not.toBeVisible();
   });
 });

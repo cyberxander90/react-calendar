@@ -4,15 +4,7 @@
 
 .label {
   display: block;
-  font-size: 16px;
   padding: 0;
-  transform: translateY(20px);
-  transition: 0.3s font-size, 0.3s transform;
-}
-
-.focus {
-  font-size: 10px;
-  transform: translateY(0);
 }
 
 .input {
@@ -20,6 +12,7 @@
   border: 0;
   border-bottom: 1px solid;
   display: block;
+  font-size: 14px;
   min-width: 0;
   padding: 6px 0 7px;
   transition: 0.1s border-width;
@@ -27,7 +20,6 @@
 
   &:focus {
     border-bottom-color: #1c76d2;
-    border-width: 2px;
   }
 }
 

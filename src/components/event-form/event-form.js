@@ -6,15 +6,16 @@ import ColorPicker from 'src/components/pick-color';
 import moment from 'moment';
 import DayPicker from 'react-daypicker';
 import Weather from 'src/components/weather';
-import { ReactComponent as CalendarIcon } from 'src/images/calendar.svg';
+import { CalendarIcon } from 'src/components/icons';
+import classNames from 'classnames';
 import {
   validateRemainder,
   validateStartTime,
   validateEndTime
 } from './validations';
-
 import styles from './event-form.module.scss';
 import 'react-daypicker/lib/DayPicker.css';
+import Button from '../button';
 
 const EventForm = ({
   id,
@@ -37,22 +38,20 @@ const EventForm = ({
   const [color, setColor] = useState(initColor);
   const [city, setCity] = useState(initCity);
 
-  // start time
+  // start / end time time
   const [startTime, setStartTime] = useState({ minute: initStartMinute, hour: initStartHour });
   const [startTimeErrors, setStartTimeErrors] = useState(validateStartTime(startTime));
-
-  // end time
   const [endTime, setEndTime] = useState({ minute: initEndMinute, hour: initEndHour });
   const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(startTime, endTime));
 
+  // date picker
   const [date, setDate] = useState(moment(id).toDate());
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   // handle remainder change
   const handleRemainderChange = ({ target: { value } }) => {
-    const v = value.trim();
-    setRemainder(v);
-    setRemainderErrors(validateRemainder(v));
+    setRemainder(value);
+    setRemainderErrors(validateRemainder(value.trim()));
   };
 
   // handle time change
@@ -68,21 +67,21 @@ const EventForm = ({
     }
   };
 
-  const isFormInvalid = () => [
-    remainderErrors,
-    startTimeErrors,
-    endTimeErrors
-  ].some((item) => item.length);
-
+  // handle form submission
   const onFormSubmit = (event) => {
     event.preventDefault();
-
     setFormSubmitted(true);
-    if (isFormInvalid()) {
+
+    const isFormInvalid = [
+      remainderErrors,
+      startTimeErrors,
+      endTimeErrors
+    ].some((item) => item.length);
+    if (isFormInvalid) {
       return;
     }
-    const submitId = moment(date).format('YYYY-MM-DD');
 
+    const submitId = moment(date).format('YYYY-MM-DD');
     onSubmit({
       remainder,
       color,
@@ -98,7 +97,7 @@ const EventForm = ({
       onSubmit={onFormSubmit}
     >
       <TextInput
-        className={styles.remainder}
+        className={styles.input}
         label="Remainder"
         name="remainder"
         value={remainder}
@@ -106,42 +105,62 @@ const EventForm = ({
         displayValidation={isFormSubmitted}
         errors={remainderErrors}
       />
-      <TimerInput
-        text="From"
-        className={styles.from}
-        minute={startTime.minute}
-        hour={startTime.hour}
-        onChangeTimer={handleTimeChange('from')}
-        displayValidation={isFormSubmitted}
-        errors={startTimeErrors}
-      />
-      <TimerInput
-        className={styles.to}
-        text="To"
-        minute={endTime.minute}
-        hour={endTime.hour}
-        onChangeTimer={handleTimeChange('to')}
-        displayValidation={isFormSubmitted}
-        errors={endTimeErrors}
-      />
+      <div className={classNames(styles.input, styles.timers)}>
+        <TimerInput
+          text="From"
+          className={styles.from}
+          minute={startTime.minute}
+          hour={startTime.hour}
+          onChangeTimer={handleTimeChange('from')}
+          displayValidation={isFormSubmitted}
+          errors={startTimeErrors}
+        />
+        <TimerInput
+          text="To"
+          minute={endTime.minute}
+          hour={endTime.hour}
+          onChangeTimer={handleTimeChange('to')}
+          displayValidation={isFormSubmitted}
+          errors={endTimeErrors}
+        />
+      </div>
+
+      <div
+        role="button"
+        onClick={() => setShowDatePicker(!showDatePicker)}
+        onKeyPress={() => setShowDatePicker(!showDatePicker)}
+        className={classNames(styles.input, styles.date, 'pointer')}
+        tabIndex={0}
+      >
+        <CalendarIcon />
+        {' '}
+        {moment(date).format('YYYY-MM-DD')}
+      </div>
+
+      {showDatePicker && (
+        <DayPicker
+          active={date}
+          onDayClick={(value) => {
+            setDate(moment(value).toDate());
+            setShowDatePicker(!showDatePicker);
+          }}
+        />
+      )}
 
       <TextInput
-        className={styles.city}
+        className={styles.input}
         label="City"
         name="city"
         value={city}
         onChange={({ target: { value } }) => setCity(value)}
       />
 
-      <span title="Toggle Date Picker">
-        <CalendarIcon style={{ opacity: showDatePicker ? 0.3 : 1 }} onClick={() => setShowDatePicker(!showDatePicker)} type="button" />
-      </span>
-      {showDatePicker && (
-        <DayPicker
-          active={date}
-          onDayClick={(value) => setDate(moment(value).toDate())}
-        />
-      )}
+      <Weather
+        className={styles.weather}
+        city={city}
+        date={moment(date).format('YYYY-MM-DD')}
+        ms={600}
+      />
 
       <ColorPicker
         className={styles.color}
@@ -149,14 +168,14 @@ const EventForm = ({
         onChange={setColor}
       />
 
-      <Weather city={city} date={moment(date).format('YYYY-MM-DD')} ms={600} />
-
-      <button type="button" onClick={onCancel} data-tiny-popover>
-        Cancel
-      </button>
-      <button type="submit">
-        Save
-      </button>
+      <div className={styles.actions}>
+        <Button type="button" onClick={onCancel} data-tiny-popover>
+          Cancel
+        </Button>
+        <Button type="submit" primary>
+          Save
+        </Button>
+      </div>
     </form>
   );
 };

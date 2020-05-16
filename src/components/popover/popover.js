@@ -2,23 +2,36 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import TinyPopover from 'react-tiny-popover';
 
+import styles from './popover.module.scss';
+import { CloseIcon } from '../icons';
+import Tooltip from '../tooltip';
+import { shouldStopEvent } from './utils';
+
 const Popover = ({
-  content, children, tabIndex, childrenClassName, contentClassName, className
+  content, children, tabIndex, childrenClassName, contentClassName, className, displayClose
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const toggle = () => setIsPopoverOpen(!isPopoverOpen);
 
-  const onClickOutside = ({ target }) => {
-    // console.log(target);
-    if (target.id.startsWith('react-select')
-      || target.getAttribute('data-tiny-popover')) {
+  const onClickOutside = (event) => {
+    if (shouldStopEvent(event)) {
+      event.stopPropagation();
       return;
     }
     toggle();
   };
 
   const Content = (
-    <div className={contentClassName}>
+    <div className={`${contentClassName} ${styles.popover}`}>
+      {displayClose && (
+        <Tooltip
+          text="Close"
+          className={`${styles.close} action-icon pointer`}
+          onClick={toggle}
+        >
+          <CloseIcon />
+        </Tooltip>
+      )}
       {content(toggle)}
     </div>
   );
@@ -27,8 +40,6 @@ const Popover = ({
     <TinyPopover
       contentClassName={className}
       isOpen={isPopoverOpen}
-      position={['top', 'right', 'left', 'bottom']}
-      padding={10}
       onClickOutside={onClickOutside}
       content={Content}
     >
@@ -54,14 +65,16 @@ Popover.propTypes = {
   tabIndex: PropTypes.number,
   childrenClassName: PropTypes.string,
   contentClassName: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  displayClose: PropTypes.bool
 };
 
 Popover.defaultProps = {
   tabIndex: 0,
   childrenClassName: '',
   contentClassName: '',
-  className: ''
+  className: '',
+  displayClose: true
 };
 
 export default Popover;

@@ -6,6 +6,7 @@
 
 .header {
   background: $color-blue;
+  color: $color-white;
   display: flex;
 
   > * {
@@ -13,9 +14,14 @@
   }
 }
 
+.dayweek {
+  overflow: hidden;
+  padding: 10px 2px;
+}
+
 .body {
-  border-bottom: 1px solid $color-red;
-  border-left: 1px solid $color-red;
+  border-bottom: 1px solid $color-light-gray;
+  border-left: 1px solid $color-light-gray;
   display: flex;
   flex-direction: column;
   height: 90vh;
@@ -26,12 +32,26 @@
 }
 
 .row {
-  border-top: 1px solid $color-red;
+  border-top: 1px solid $color-light-gray;
   display: flex;
   overflow: hidden;
 
   > * {
-    border-right: 1px solid $color-red;
+    border-right: 1px solid $color-light-gray;
     width: 100%;
+  }
+}
+
+.short {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .short {
+    display: inline;
+  }
+
+  .large {
+    display: none;
   }
 }

@@ -7,8 +7,19 @@ export default {
 
 export const Default = () => (
   <Popover
-    tabIndex={0}
-    childrenClassName="my-class"
+    content={() => (
+      <div>
+        content
+      </div>
+    )}
+  >
+    Click Me to open Modal
+  </Popover>
+);
+
+export const WithCloseIcon = () => (
+  <Popover
+    displayClose={false}
     content={(toggle) => (
       <div>
         content

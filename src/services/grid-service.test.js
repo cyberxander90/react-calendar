@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { getFirstDateOfTheWeek, getGridDates, getWeekDates } from './grid-service';
+import { getFirstDateOfTheWeek, getGridDates, getDaysOfWeek } from './grid-service';
 
 const FORMAT = 'YYYY-MM-DD';
 
@@ -36,10 +36,10 @@ describe('Grid Service', () => {
     });
   });
 
-  describe('getWeekDates', () => {
+  describe('getDaysOfWeek', () => {
     it('returns correctly', () => {
-      expect(getWeekDates({ startOnMonday: false })).toEqual([0, 1, 2, 3, 4, 5, 6]);
-      expect(getWeekDates({ startOnMonday: true })).toEqual([1, 2, 3, 4, 5, 6, 0]);
+      expect(getDaysOfWeek({ startOnMonday: false })).toEqual([0, 1, 2, 3, 4, 5, 6]);
+      expect(getDaysOfWeek({ startOnMonday: true })).toEqual([1, 2, 3, 4, 5, 6, 0]);
     });
   });
 });

@@ -1,0 +1,24 @@
+.list > li {
+  display: flex;
+  margin-bottom: 20px;
+
+  &:first-child {
+    margin-top: 20px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.label {
+  margin-right: 20px;
+}
+
+.color {
+  margin-right: 14px;
+}
+
+.disabled {
+  opacity: 0.5;
+}

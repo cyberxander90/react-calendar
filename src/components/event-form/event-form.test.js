@@ -3,8 +3,12 @@ import { render } from '@testing-library/react';
 import EventForm from './event-form';
 
 describe(`Test ${EventForm.name} component`, () => {
-  test('renders correctly without params', () => {
-    const { container } = render(<EventForm text="hello" event={{}} />);
+  test('renders correctly', () => {
+    const { container } = render(
+      <EventForm
+        id="2020-01-01"
+      />
+    );
     expect(container).toBeTruthy();
   });
 });

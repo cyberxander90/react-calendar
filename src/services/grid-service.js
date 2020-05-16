@@ -28,7 +28,7 @@ export const getGridDates = ({ date, startOnMonday }) => {
   return result;
 };
 
-export const getWeekDates = ({ startOnMonday }) => {
+export const getDaysOfWeek = ({ startOnMonday }) => {
   const result = range(7);
   if (startOnMonday) {
     result.splice(0, 1);

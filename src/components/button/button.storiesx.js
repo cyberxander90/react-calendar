@@ -1,12 +1,16 @@
 import React from 'react';
 import { withKnobs } from '@storybook/addon-knobs';
-import Calendar from './calendar';
+import Button from './button';
 
 export default {
-  title: Calendar.name,
+  title: Button.name,
   decorators: [withKnobs]
 };
 
 export const Default = () => (
-  <Calendar />
+  <Button>Default</Button>
+);
+
+export const Primary = () => (
+  <Button primary>Primary</Button>
 );

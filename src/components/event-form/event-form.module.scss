@@ -1,14 +1,31 @@
-.form {
-  padding: 10px;
+
+.input {
+  margin-bottom: 20px;
 }
 
-.remainder,
-.to,
-.city,
-.color {
-  margin-bottom: 10px;
+.timers {
+  display: flex;
+  justify-content: flex-start;
+
+  > * {
+    margin-right: 40px;
+  }
 }
 
-.from {
-  margin-bottom: 5px;
+.date {
+  margin-top: 16px;
+}
+
+.weather {
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.actions {
+  margin-top: 20px;
+  text-align: right;
+
+  > * {
+    margin-left: 20px;
+  }
 }

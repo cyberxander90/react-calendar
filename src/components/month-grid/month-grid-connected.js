@@ -45,9 +45,11 @@ const MonthGridConnected = ({
 
 MonthGridConnected.propTypes = {
   dateStr: PropTypes.string.isRequired,
-  startOnMonday: PropTypes.bool.isRequired
+  startOnMonday: PropTypes.bool
 };
 
-MonthGridConnected.defaultProps = { };
+MonthGridConnected.defaultProps = {
+  startOnMonday: false
+};
 
 export default MonthGridConnected;

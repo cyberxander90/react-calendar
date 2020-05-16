@@ -6,19 +6,22 @@ import Popover from 'src/components/popover';
 
 import styles from './event-tag.module.scss';
 
-const ITEM_HEIGHT = 30;
-
-const getMaxItemsToDisplay = (height) => Math.floor((height - 30) / ITEM_HEIGHT);
+const getMaxItemsToDisplay = (height, itemHeight) => Math.floor((height - 20) / itemHeight);
 
 const EventTag = ({
-  id, events, height, displayAll
+  id, events, height, displayAll, itemHeight
 }) => {
-  const maxItemsToDisplay = height && !displayAll ? getMaxItemsToDisplay(height) : events.length;
+  let maxItemsToDisplay = height && !displayAll
+    ? getMaxItemsToDisplay(height, itemHeight)
+    : events.length;
+  if (maxItemsToDisplay + 1 === events.length) {
+    maxItemsToDisplay = events.length;
+  }
   const eventsToDisplay = events.slice(0, maxItemsToDisplay);
   const missingEvents = events.slice(maxItemsToDisplay).length;
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {eventsToDisplay.map((event) => (
         <EventTagItem
           id={id}
@@ -29,21 +32,15 @@ const EventTag = ({
       { missingEvents > 0 && (
         <li>
           <Popover
-            content={(toggle) => (
-              <div className={styles.all}>
-                <EventTag
-                  id={id}
-                  displayAll
-                  events={events}
-                />
-                <button type="button" onClick={toggle}>close</button>
-              </div>
+            content={() => (
+              <EventTag
+                id={id}
+                displayAll
+                events={events}
+              />
             )}
           >
-            <div>
-              {missingEvents}
-              more
-            </div>
+            {`${missingEvents} more`}
           </Popover>
         </li>
       ) }
@@ -53,13 +50,17 @@ const EventTag = ({
 
 EventTag.propTypes = {
   id: PropTypes.string.isRequired,
-  events: PropTypes.arrayOf().isRequired,
-  height: PropTypes.number.isRequired,
-  displayAll: PropTypes.bool
+  events: PropTypes.arrayOf(PropTypes.object),
+  height: PropTypes.number,
+  displayAll: PropTypes.bool,
+  itemHeight: PropTypes.number
 };
 
 EventTag.defaultProps = {
-  displayAll: false
+  displayAll: false,
+  itemHeight: 30,
+  height: 100,
+  events: []
 };
 
 export default withResizeDetector(EventTag);

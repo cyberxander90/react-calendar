@@ -6,7 +6,6 @@
 
 * {
   box-sizing: border-box;
-  color: $color-black;
 }
 
 body {
@@ -26,4 +25,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
+}
+
+.action-icon {
+  border-radius: 50%;
+  height: 20px;
+  padding-left: 1px;
+  padding-top: 2px;
+  width: 20px;
+
+  &:hover {
+    background: #f2f2f2;
+  }
+}
+
+.pointer {
+  cursor: pointer;
 }

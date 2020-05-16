@@ -1,5 +1,6 @@
 import React from 'react';
 import { withKnobs, text } from '@storybook/addon-knobs';
+import moment from 'moment';
 import Weather from './weather';
 
 export default {
@@ -7,5 +8,9 @@ export default {
   decorators: [withKnobs]
 };
 
-export const Default = () => <Weather />;
-export const WeatherWithName = () => <Weather name={text('Text', 'hello world')} />;
+export const Default = () => (
+  <Weather
+    city={text('City', 'Montevideo')}
+    date={moment().format('YYYY-MM-DD')}
+  />
+);

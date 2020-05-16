@@ -1,24 +1,27 @@
+@import 'src/styles/variables';
+
 .li {
-  height: 20px;
   overflow: hidden;
-
-  &:hover {
-    background: #f1f3f4;
-    cursor: pointer;
-  }
-
-  > * {
-    display: inline-block;
-  }
 }
 
 .color {
-  border: 1px solid #44484b;
-  border-radius: 50%;
-  height: 10px;
-  width: 10px;
+  margin-top: 4px;
+  position: absolute;
 }
 
 .reminder {
-  font-weight: bold;
+  overflow: hidden;
+  padding-left: 19px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.actions {
+  text-align: right;
+
+  > div {
+    cursor: pointer;
+    margin-left: 10px;
+  }
 }

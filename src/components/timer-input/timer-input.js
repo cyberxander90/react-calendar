@@ -57,7 +57,7 @@ TimerInput.propTypes = {
   minute: PropTypes.string,
   displayValidation: PropTypes.bool,
   errors: PropTypes.arrayOf(PropTypes.string),
-  onChangeTimer: PropTypes.func.isRequired,
+  onChangeTimer: PropTypes.func,
   className: PropTypes.string
 };
 
@@ -67,7 +67,8 @@ TimerInput.defaultProps = {
   minute: '00',
   displayValidation: false,
   errors: [],
-  className: ''
+  className: '',
+  onChangeTimer: () => {}
 };
 
 export default TimerInput;

@@ -12,9 +12,7 @@ export const validateRemainder = (remainder) => {
   return validations;
 };
 
-export const validateStartTime = ({ minute, hour }) => (!minute || !hour
-  ? ['Invalid time']
-  : []);
+export const validateStartTime = ({ minute, hour }) => (!minute || !hour ? ['Invalid time'] : []);
 
 export const validateEndTime = (startTime, endTime) => {
   const validations = [];
