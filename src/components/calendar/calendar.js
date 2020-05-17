@@ -6,12 +6,11 @@ import Tooltip from 'src/components/tooltip';
 
 import styles from './calendar.module.scss';
 
-const Calendar = ({ GridCmp, date, updateDate }) => {
+const Calendar = ({ GridCmp, date, onUpdateDate }) => {
   const mDate = moment(date);
-
-  const nextMonth = () => updateDate(moment(mDate.subtract(1, 'months')));
-  const prevMonth = () => updateDate(moment(mDate.add(1, 'months')));
-  const goToday = () => updateDate(moment(), true);
+  const nextMonth = () => onUpdateDate(moment(mDate.subtract(1, 'months')), false);
+  const prevMonth = () => onUpdateDate(moment(mDate.add(1, 'months')), false);
+  const goToday = () => onUpdateDate(moment(), true);
 
   return (
     <div className={styles.calendar}>
@@ -22,25 +21,31 @@ const Calendar = ({ GridCmp, date, updateDate }) => {
           className={styles.arrow}
           onClick={nextMonth}
         >
-          <BackIcon />
+          <BackIcon data-test="arrow-back" />
         </Tooltip>
-        <span className={styles.date}>{ mDate.format('MMMM YYYY') }</span>
+        <span className={styles.date}>
+          { mDate.format('MMMM YYYY') }
+        </span>
         <Tooltip
           text="Next month"
           inline
           className={styles.arrow}
           onClick={prevMonth}
         >
-          <NextIcon />
+          <NextIcon data-test="arrow-next" />
         </Tooltip>
 
         <Tooltip text="Go to the current month" inline>
-          <button type="button" onClick={goToday} className={styles.today}>
+          <button
+            type="button"
+            onClick={goToday}
+            className={styles.today}
+          >
             Today
           </button>
         </Tooltip>
       </div>
-      { GridCmp && <GridCmp dateStr={mDate} />}
+      { GridCmp && <GridCmp date={mDate} />}
     </div>
   );
 };
@@ -48,13 +53,13 @@ const Calendar = ({ GridCmp, date, updateDate }) => {
 Calendar.propTypes = {
   GridCmp: PropTypes.func,
   date: PropTypes.date,
-  updateDate: PropTypes.func
+  onUpdateDate: PropTypes.func
 };
 
 Calendar.defaultProps = {
   GridCmp: null,
   date: '',
-  updateDate: () => {}
+  onUpdateDate: () => {}
 };
 
 export default Calendar;

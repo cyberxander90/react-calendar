@@ -25,7 +25,13 @@ const MonthPage = () => {
     );
   }
 
-  return <Calendar GridCmp={MonthGridConnected} date={mDate} updateDate={setHistory} />;
+  return (
+    <Calendar
+      GridCmp={MonthGridConnected}
+      date={mDate}
+      onUpdateDate={setHistory}
+    />
+  );
 };
 
 export default MonthPage;
