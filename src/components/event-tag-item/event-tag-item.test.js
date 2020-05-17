@@ -7,7 +7,7 @@ describe(`Test ${EventTagItem.name} component`, () => {
     const { getByText } = render(
       <ul style={{ listStyle: 'none' }}>
         <EventTagItem
-          id="2020-05-10"
+          date="2020-05-10"
           event={{
             remainder: 'Daily Meeting',
             color: 'red',

@@ -34,7 +34,7 @@ const MonthGridCell = ({
           >
             <Tooltip
               text="Add event"
-              className={`${styles.action} action-icon`}
+              className={classNames(styles.action, 'action-icon')}
             >
               <AddIcon />
             </Tooltip>
@@ -43,7 +43,7 @@ const MonthGridCell = ({
           {events.length > 0 && (
             <Tooltip
               text="Delete all"
-              className={`${styles.action} action-icon`}
+              className={classNames(styles.action, 'action-icon')}
               onClick={onDeleteAllEvents}
             >
               <TrashIcon />
@@ -52,7 +52,7 @@ const MonthGridCell = ({
         </div>
       </div>
 
-      <EventTag id={date} events={events} />
+      <EventTag date={date} events={events} />
     </div>
   </div>
 );

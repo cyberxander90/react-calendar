@@ -11,9 +11,10 @@ const data = [
   }
 ];
 
+// TODO: provide redux provider
 describe(`Test ${EventTag.name} component`, () => {
   test('renders correctly', () => {
-    const { getByText } = render(<EventTag id="2020-01-01" events={data} />);
+    const { getByText } = render(<EventTag date="2020-01-01" events={data} />);
     expect(getByText('Text 1')).toBeTruthy();
     expect(getByText('Text 2')).toBeTruthy();
   });

@@ -29,7 +29,7 @@ const data = [
 export const Default = () => (
   <div style={{ height: 400, width: 300, border: '1px solid' }}>
     <EventTag
-      id="2020-01-01"
+      date="2020-01-01"
       events={data}
     />
   </div>
@@ -41,7 +41,7 @@ const Container = ({ height, itemHeight }) => (
   }}
   >
     <EventTag
-      id="2020-01-01"
+      date="2020-01-01"
       events={data}
     />
   </div>

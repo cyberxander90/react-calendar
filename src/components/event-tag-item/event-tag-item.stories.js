@@ -11,7 +11,7 @@ export default {
 export const Default = () => (
   <ul style={{ listStyle: 'none' }}>
     <EventTagItem
-      id="2020-05-10"
+      date="2020-05-10"
       event={{
         remainder: text('Text', 'Daily Meeting'),
         color: text('Color', 'red'),
