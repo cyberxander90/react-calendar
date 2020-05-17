@@ -1,31 +1,32 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'src/services/prop-types';
 import moment from 'moment';
 import { BackIcon, NextIcon } from 'src/components/icons';
-import Tooltip from '../tooltip';
+import Tooltip from 'src/components/tooltip';
 
 import styles from './calendar.module.scss';
 
-const Calendar = ({ gridCmp: Grid }) => {
-  const [date, setDate] = useState(moment());
-  const nextMonth = () => setDate(moment(date.subtract(1, 'months')));
-  const prevMonth = () => setDate(moment(date.add(1, 'months')));
-  const goToday = () => setDate(moment());
+const Calendar = ({ GridCmp, date, updateDate }) => {
+  const mDate = moment(date);
+
+  const nextMonth = () => updateDate(moment(mDate.subtract(1, 'months')));
+  const prevMonth = () => updateDate(moment(mDate.add(1, 'months')));
+  const goToday = () => updateDate(moment(), true);
 
   return (
     <div className={styles.calendar}>
       <div className={styles.header}>
         <Tooltip
-          text="previous month"
+          text="Previous month"
           inline
           className={styles.arrow}
           onClick={nextMonth}
         >
           <BackIcon />
         </Tooltip>
-        <span className={styles.date}>{ date.format('MMMM YYYY') }</span>
+        <span className={styles.date}>{ mDate.format('MMMM YYYY') }</span>
         <Tooltip
-          text="next month"
+          text="Next month"
           inline
           className={styles.arrow}
           onClick={prevMonth}
@@ -39,17 +40,21 @@ const Calendar = ({ gridCmp: Grid }) => {
           </button>
         </Tooltip>
       </div>
-      { Grid && <Grid dateStr={date.format('YYYY-MM-DD')} />}
+      { GridCmp && <GridCmp dateStr={mDate} />}
     </div>
   );
 };
 
 Calendar.propTypes = {
-  gridCmp: PropTypes.func,
+  GridCmp: PropTypes.func,
+  date: PropTypes.date,
+  updateDate: PropTypes.func
 };
 
 Calendar.defaultProps = {
-  gridCmp: null
+  GridCmp: null,
+  date: '',
+  updateDate: () => {}
 };
 
 export default Calendar;

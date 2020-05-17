@@ -20,5 +20,5 @@ const Grid = ({ dateStr }) => (
 );
 
 export const CustomGrid = () => (
-  <Calendar gridCmp={Grid} />
+  <Calendar GridCmp={Grid} />
 );
