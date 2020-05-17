@@ -15,10 +15,12 @@ const data = [
   }
 ];
 
+// TODO: provide a redux provider
 export const Default = () => (
   <div style={{ width: 200, height: 200 }}>
     <MonthGridCell
-      id="2020-05-10"
+      date="2020-05-10"
+      day={3}
       events={data}
       onCreateEvent={action('OnCreate')}
       onDeleteAllEvents={action('OnDelete')}

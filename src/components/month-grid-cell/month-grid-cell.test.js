@@ -15,7 +15,7 @@ describe(`Test ${MonthGridCell.name} component`, () => {
   test('renders correctly', () => {
     const { container } = render(
       <MonthGridCell
-        id="2020-05-10"
+        date="2020-05-10"
         events={data}
       />
     );

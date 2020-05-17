@@ -1,25 +1,14 @@
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getDaysOfWeek } from 'src/services/grid-service';
+import { geNameOfWeekDay, getDaysOfWeek, YYYY_MM_DD } from 'src/services/dates';
 
 import styles from './month-grid.module.scss';
 
-// TODO: move to a service
-const nameOfWeekDay = [
-  ['Sunday', 'Sun'],
-  ['Monday', 'Mon'],
-  ['Tuesday', 'Tue'],
-  ['Wednesday', 'Wed'],
-  ['Thursday', 'Thu'],
-  ['Friday', 'Fri'],
-  ['Saturday', 'Sat']
-];
-const geNameOfWeekDay = (day) => nameOfWeekDay[day];
-
 const MonthGrid = ({
-  startOnMonday, cellCmp, cellHeaderCmp, grid, monthValue
+  gridDates, startOnMonday, monthNumber, cellHeaderCmp, cellBodyCmp
 }) => {
+  // the header of the grid
   const CellHeaderCmp = cellHeaderCmp || (({ day }) => {
     const [fullName, shortName] = geNameOfWeekDay(day);
     return (
@@ -37,26 +26,22 @@ const MonthGrid = ({
     </div>
   );
 
-  const CellCmp = cellCmp || (({ id }) => <div className={styles.daymonth}>{id}</div>);
-  let tabIndex = 0;
-  const mapCell = (item) => {
-    const dateStr = item.format('YYYY-MM-DD');
-    const isCurrentMonth = item.month() === monthValue;
-    tabIndex += 1;
-    return (
-      <CellCmp
-        key={dateStr}
-        id={dateStr}
-        day={item.date()}
-        isCurrentMonth={isCurrentMonth}
-        isWeekend={[0, 6].includes(item.day())}
-        tabIndex={tabIndex}
-      />
-    );
-  };
+  // the body of the grid
+  const CellBodyCmp = cellBodyCmp || (({ id }) => <div className={styles.daymonth}>{id}</div>);
+  const mapCell = (mDate, i) => (
+    <CellBodyCmp
+      key={mDate.format(YYYY_MM_DD)}
+      id={mDate.format(YYYY_MM_DD)}
+      date={mDate}
+      day={mDate.date()}
+      isCurrentMonth={mDate.month() === monthNumber}
+      isWeekend={[0, 6].includes(mDate.day())}
+      tabIndex={i}
+    />
+  );
   const Body = () => (
     <div className={styles.body}>
-      {grid.map((row, i) => (
+      {gridDates.map((row, i) => (
         <div key={i} className={styles.row}>
           {row.map(mapCell)}
         </div>
@@ -73,16 +58,18 @@ const MonthGrid = ({
 };
 
 MonthGrid.propTypes = {
-  grid: PropTypes.arrayOf(PropTypes.object).isRequired,
+  gridDates: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.date)),
   startOnMonday: PropTypes.bool,
-  monthValue: PropTypes.number.isRequired,
-  cellCmp: PropTypes.func,
-  cellHeaderCmp: PropTypes.objectOf()
+  monthNumber: PropTypes.number,
+  cellBodyCmp: PropTypes.func,
+  cellHeaderCmp: PropTypes.func
 };
 
 MonthGrid.defaultProps = {
+  gridDates: [],
   startOnMonday: false,
-  cellCmp: null,
+  monthNumber: 0,
+  cellBodyCmp: null,
   cellHeaderCmp: null
 };
 

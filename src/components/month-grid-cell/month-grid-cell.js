@@ -1,28 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'src/services/prop-types';
 import Popover from 'src/components/popover';
 import EventForm from 'src/components/event-form';
 import EventTag from 'src/components/event-tag';
 import { AddIcon, TrashIcon } from 'src/components/icons';
 import Tooltip from 'src/components/tooltip';
+import classNames from 'classnames';
 
 import styles from './month-grid-cell.module.scss';
 
 const MonthGridCell = ({
-  id, day, isCurrentMonth, isWeekend, tabIndex, events, onCreateEvent, onDeleteAllEvents
+  date, day, isCurrentMonth, isWeekend, tabIndex, events, onCreateEvent, onDeleteAllEvents
 }) => (
-  <div className={`${styles.cell} ${isWeekend ? styles.weekend : ''}`}>
-    <div className={`${isCurrentMonth ? '' : styles.disabled}`}>
+  <div className={classNames(styles.cell, { [styles.weekend]: isWeekend })}>
+    <div className={classNames({ [styles.disabled]: !isCurrentMonth })}>
 
       <div className={styles.header}>
         <div className={styles.day}>{day}</div>
         <div className={styles.actions}>
           <Popover
-            childrenClassName={styles.actions22}
             tabIndex={tabIndex}
             content={(toggle) => (
               <EventForm
-                id={id}
+                id={date}
+                date={date}
                 onSubmit={(event) => {
                   onCreateEvent(event);
                   toggle();
@@ -31,31 +32,38 @@ const MonthGridCell = ({
               />
             )}
           >
-            <Tooltip text="add event" className={`${styles.action} action-icon`}>
+            <Tooltip
+              text="Add event"
+              className={`${styles.action} action-icon`}
+            >
               <AddIcon />
             </Tooltip>
           </Popover>
 
           {events.length > 0 && (
-            <Tooltip text="delete all" className={`${styles.action} action-icon`} onClick={onDeleteAllEvents}>
+            <Tooltip
+              text="Delete all"
+              className={`${styles.action} action-icon`}
+              onClick={onDeleteAllEvents}
+            >
               <TrashIcon />
             </Tooltip>
           )}
         </div>
       </div>
 
-      <EventTag id={id} events={events} />
+      <EventTag id={date} events={events} />
     </div>
   </div>
 );
 
 MonthGridCell.propTypes = {
-  id: PropTypes.string.isRequired,
+  date: PropTypes.date.isRequired,
   day: PropTypes.number,
   isCurrentMonth: PropTypes.bool,
   isWeekend: PropTypes.bool,
   tabIndex: PropTypes.number,
-  events: PropTypes.arrayOf(PropTypes.shape),
+  events: PropTypes.arrayOf(PropTypes.event),
   onCreateEvent: PropTypes.func,
   onDeleteAllEvents: PropTypes.func
 };
