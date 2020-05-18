@@ -4,11 +4,11 @@ import Tooltip from './tooltip';
 
 describe(`Test ${Tooltip.name} component`, () => {
   test('renders correctly', () => {
-    const { container } = render(
+    const { getByText } = render(
       <Tooltip text="tooltip info" inline>
-        <span>Over me!</span>
+        <span>Over me</span>
       </Tooltip>
     );
-    expect(container).toBeTruthy();
+    expect(getByText('Over me')).toBeTruthy();
   });
 });

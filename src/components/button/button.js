@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'src/services/prop-types';
 import classNames from 'classnames';
 
 import styles from './button.module.scss';
@@ -23,7 +23,7 @@ const Button = ({
 
 Button.propTypes = {
   primary: PropTypes.bool,
-  children: PropTypes.func,
+  children: PropTypes.children,
   className: PropTypes.string
 };
 

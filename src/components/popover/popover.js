@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'src/services/prop-types';
 import TinyPopover from 'react-tiny-popover';
 
 import styles from './popover.module.scss';
@@ -57,10 +57,7 @@ const Popover = ({
 };
 
 Popover.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
+  children: PropTypes.children.isRequired,
   content: PropTypes.func.isRequired,
   tabIndex: PropTypes.number,
   childrenClassName: PropTypes.string,

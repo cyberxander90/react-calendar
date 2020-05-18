@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'src/services/prop-types';
 import TinyPopover from 'react-tiny-popover';
 
 import styles from './tooltip.module.scss';
@@ -19,7 +20,6 @@ const Tooltip = ({
         style={inline ? { display: 'inline-block' } : {}}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
       >
         {children}
@@ -30,7 +30,7 @@ const Tooltip = ({
 
 Tooltip.propTypes = {
   text: PropTypes.string,
-  children: PropTypes.node,
+  children: PropTypes.children,
   inline: PropTypes.bool,
   className: PropTypes.string,
 };

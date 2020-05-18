@@ -17,4 +17,9 @@ PropTypes.event = PropTypes.shape({
   remainder: PropTypes.string
 });
 
+PropTypes.children = PropTypes.oneOfType([
+  PropTypes.arrayOf(PropTypes.node),
+  PropTypes.node
+]);
+
 export default PropTypes;
