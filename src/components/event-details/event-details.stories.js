@@ -11,8 +11,8 @@ export const Default = () => (
   <EventDetails
     remainder={text('Remainder', 'hello')}
     color={text('Color', 'red')}
-    startDate={text('Start Date', '2020-01-01 10:10 am')}
-    endDate={text('End Date', '2020-01-01 11:10 am')}
+    startDate={text('Start Date', '2020-02-01 10:10 am')}
+    endDate={text('End Date', '2020-02-01 12:12 am')}
     city={text('City', 'Montevideo')}
   />
 );

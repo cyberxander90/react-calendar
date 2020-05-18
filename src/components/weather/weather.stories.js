@@ -11,6 +11,6 @@ export default {
 export const Default = () => (
   <Weather
     city={text('City', 'Montevideo')}
-    date={moment().format('YYYY-MM-DD')}
+    date={moment()}
   />
 );

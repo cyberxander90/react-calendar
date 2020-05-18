@@ -2,6 +2,7 @@ import moment from 'moment';
 import { range } from 'src/services/tools-service';
 
 export const YYYY_MM_DD = 'YYYY-MM-DD';
+export const HH_MM = 'HH:mm';
 
 const nameOfWeekDay = [
   ['Sunday', 'Sun'],
