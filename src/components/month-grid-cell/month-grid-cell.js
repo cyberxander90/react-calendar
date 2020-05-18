@@ -24,8 +24,8 @@ const MonthGridCell = ({
               <EventForm
                 date={date}
                 onSubmit={(event) => {
-                  onCreateEvent(event);
                   toggle();
+                  onCreateEvent(event);
                 }}
                 onCancel={toggle}
               />

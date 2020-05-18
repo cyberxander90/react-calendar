@@ -22,7 +22,7 @@ const MonthGridCellConnected = ({ date, ...otherProps }) => {
   const onCreateEvent = (event) => dispatch(createAsyncEvent(event));
   const onDeleteAllEvents = () => {
     if (confirm('Do you want to delete all events in this day?')) {
-      dispatch(deleteAllAsyncEvent(date));
+      dispatch(deleteAllAsyncEvent(date.format(YYYY_MM_DD)));
     }
   };
 

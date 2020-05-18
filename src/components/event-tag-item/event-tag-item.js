@@ -39,6 +39,7 @@ EventTagItem.propTypes = {
   event: PropTypes.event.isRequired
 };
 
-EventTagItem.defaultProps = { };
+EventTagItem.defaultProps = {
+};
 
 export default EventTagItem;

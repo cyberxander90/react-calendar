@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'src/services/prop-types';
-import TinyPopover from 'react-tiny-popover';
+import Popover from 'react-popover';
 
 import styles from './tooltip.module.scss';
 
@@ -10,11 +10,11 @@ const Tooltip = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <TinyPopover
+    <Popover
       isOpen={isOpen}
-      position={['top', 'bottom', 'right', 'left']}
-      padding={3}
-      content={<div className={styles.tooltip}>{text}</div>}
+      preferPlace="column"
+      enterExitTransitionDurationMs={50}
+      body={<div className={styles.tooltip}>{text}</div>}
     >
       <div
         style={inline ? { display: 'inline-block' } : {}}
@@ -24,7 +24,7 @@ const Tooltip = ({
       >
         {children}
       </div>
-    </TinyPopover>
+    </Popover>
   );
 };
 

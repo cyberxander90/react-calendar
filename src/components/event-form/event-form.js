@@ -70,8 +70,7 @@ const EventForm = ({
   };
 
   // handle form submission
-  const onFormSubmit = (event) => {
-    event.preventDefault();
+  const onFormSubmit = () => {
     setFormSubmitted(true);
 
     const isFormInvalid = [
@@ -95,7 +94,6 @@ const EventForm = ({
   return (
     <form
       className={styles.form}
-      onSubmit={onFormSubmit}
     >
       <TextInput
         className={styles.input}
@@ -173,7 +171,7 @@ const EventForm = ({
         <Button type="button" onClick={onCancel} data-tiny-popover>
           Cancel
         </Button>
-        <Button type="submit" primary>
+        <Button type="button" onClick={onFormSubmit} primary data-tiny-popover>
           Save
         </Button>
       </div>

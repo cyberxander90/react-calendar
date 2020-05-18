@@ -85,7 +85,7 @@ const EventTagItemContent = ({ date, event, toggle }) => {
           startHour={moment(event.startDate).format('HH')}
           endMinute={moment(event.endDate).format('mm')}
           endHour={moment(event.endDate).format('HH')}
-          onSubmit={onSubmit(dispatch)}
+          onSubmit={onSubmit(dispatch, setView)}
           onCancel={() => setView(0)}
         />
       ) : (

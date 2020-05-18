@@ -1,25 +1,18 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import PropTypes from 'src/services/prop-types';
-import TinyPopover from 'react-tiny-popover';
 import classNames from 'classnames';
 import { CloseIcon } from 'src/components/icons';
 import Tooltip from 'src/components/tooltip';
+import ReactPopover from 'react-popover';
 import styles from './popover.module.scss';
 import { shouldStopEvent } from './utils';
 
 const Popover = ({
-  content, children, tabIndex, childrenClassName, contentClassName, className, displayClose
+  content, children, tabIndex, childrenClassName, contentClassName, displayClose, ...otherProps
 }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const toggle = () => setIsPopoverOpen(!isPopoverOpen);
-
-  const onClickOutside = (event) => {
-    if (shouldStopEvent(event)) {
-      event.stopPropagation();
-      return;
-    }
-    toggle();
-  };
 
   const Content = (
     <div className={classNames(contentClassName, styles.popover)}>
@@ -37,11 +30,17 @@ const Popover = ({
   );
 
   return (
-    <TinyPopover
-      contentClassName={className}
+    <ReactPopover
       isOpen={isPopoverOpen}
-      onClickOutside={onClickOutside}
-      content={Content}
+      preferPlace="column"
+      onOuterAction={(event) => {
+        if (shouldStopEvent(event)) {
+          return;
+        }
+        toggle();
+      }}
+      body={Content}
+      {...otherProps}
     >
       <div
         className={childrenClassName || ''}
@@ -52,7 +51,7 @@ const Popover = ({
       >
         {children}
       </div>
-    </TinyPopover>
+    </ReactPopover>
   );
 };
 
@@ -62,7 +61,6 @@ Popover.propTypes = {
   tabIndex: PropTypes.number,
   childrenClassName: PropTypes.string,
   contentClassName: PropTypes.string,
-  className: PropTypes.string,
   displayClose: PropTypes.bool
 };
 
@@ -70,7 +68,6 @@ Popover.defaultProps = {
   tabIndex: 0,
   childrenClassName: '',
   contentClassName: '',
-  className: '',
   displayClose: true
 };
 

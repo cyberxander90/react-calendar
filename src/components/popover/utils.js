@@ -1,17 +1,10 @@
 // eslint-disable-next-line import/prefer-default-export
 export const shouldStopEvent = (event) => {
-  const validIds = [
-    'react-select',
-  ];
+  const validIds = [];
   const validClasses = [
-    'react-tiny-popover-container',
-    'day',
-    'DayPicker-Day'
+    'Popover'
   ];
-  const validDataAttrs = [
-    'data-tiny-popover',
-    'data-keep-popover'
-  ];
+  const validDataAttrs = [];
   const isValidId = (target) => validIds.some((id) => target.id.startsWith(id));
   const isValidClass = (target) => validClasses
     .some((classValue) => target.classList.contains(classValue));
