@@ -15,6 +15,11 @@ const MonthPage = () => {
   const location = useLocation();
   const { date } = useParams();
 
+  // this is to test some error boundary
+  if (date === 'error') {
+    throw new Error();
+  }
+
   const setHistory = (mDate, isToday) => {
     const newPath = isToday ? '/' : `/month/${moment(mDate).format('YYYY-MM')}`;
     return location.pathname === newPath ? history.replace(newPath) : history.push(newPath);
