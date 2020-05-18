@@ -6,6 +6,8 @@ const isInvalid = (event) => !event.startDate
   || !moment(event.startDate).isValid
   || !moment(event.endDate).isValid;
 
+const delay = (timeout) => new Promise((resolve) => setTimeout(resolve, timeout));
+
 // GET events/id
 const getEvent = (req, id) => {
   const index = req.db.events.findIndex((event) => event.id === id);
@@ -33,7 +35,9 @@ const createEventHandler = async (req, res) => {
     return res.status(500).send('Invalid');
   }
 
-  if (event.city === 'Barcelona') {
+  if (event.city === 'Roma') {
+    await delay(4000);
+  } else if (event.city === 'Barcelona') {
     return res.status(400).send('Invalid city');
   }
 
@@ -52,6 +56,12 @@ const updateEventHandler = async (req, res) => {
   const [event, i] = getEvent(req, req.params.id);
   if (!event) {
     return res.status(404).send('Not found');
+  }
+
+  if (event.city === 'Roma') {
+    await delay(4000);
+  } else if (event.city === 'Barcelona') {
+    return res.status(400).send('Invalid city');
   }
 
   const value = { ...event, ...newEvent };
