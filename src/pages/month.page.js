@@ -8,6 +8,7 @@ import {
 import moment from 'moment';
 import Calendar from 'src/components/calendar';
 import MonthGridConnected from 'src/components/month-grid';
+import LoadingBar from 'src/components/loading-bar';
 
 const MonthPage = () => {
   const history = useHistory();
@@ -26,11 +27,14 @@ const MonthPage = () => {
   }
 
   return (
-    <Calendar
-      GridCmp={MonthGridConnected}
-      date={mDate}
-      onUpdateDate={setHistory}
-    />
+    <>
+      <LoadingBar />
+      <Calendar
+        GridCmp={MonthGridConnected}
+        date={mDate}
+        onUpdateDate={setHistory}
+      />
+    </>
   );
 };
 
