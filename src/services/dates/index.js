@@ -50,3 +50,13 @@ export const getDaysOfWeek = ({ startOnMonday }) => {
   }
   return result;
 };
+
+const getOptions = (n, startOn = 0) => range(n, startOn)
+  .map((id) => {
+    const value = `${id < 10 ? '0' : ''}${id}`;
+    return { value, label: value };
+  });
+
+export const hour24Options = getOptions(24);
+export const hour12Options = getOptions(13, 1);
+export const minOptions = getOptions(60);

@@ -1,4 +1,12 @@
-export const range = (n) => Array.from({ length: n }, (v, k) => k);
+export const range = (n, startOn = 0) => {
+  const result = [];
+  for (let i = 0; i < n; i += 1) {
+    if (i >= startOn) {
+      result.push(i);
+    }
+  }
+  return result;
+};
 
 export const debounce = (callback, ms) => {
   let timeOut;

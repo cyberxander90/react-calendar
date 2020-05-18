@@ -9,9 +9,13 @@ export const TextInputWithName = () => {
   const [value, setValue] = useState('hello');
 
   return (
-    <TextInput
-      value={value}
-      onChange={({ target }) => setValue(target.value)}
-    />
+    <div style={{ width: 200 }}>
+      <TextInput
+        label="My Label"
+        name="city"
+        value={value}
+        onChange={({ target }) => setValue(target.value)}
+      />
+    </div>
   );
 };

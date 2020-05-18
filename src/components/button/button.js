@@ -23,7 +23,7 @@ const Button = ({
 
 Button.propTypes = {
   primary: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.func,
   className: PropTypes.string
 };
 

@@ -40,10 +40,10 @@
 
   .react-timer-select__option {
     padding: 5px 6px;
+  }
 
-    &:not(.react-timer-select__option--is-selected):hover {
-      background: #f1f3f4;
-    }
+  .react-timer-select__option:not(.react-timer-select__option--is-selected):hover {
+    background: #f1f3f4;
   }
 
   .react-timer-select__menu-list {

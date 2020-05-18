@@ -1,4 +1,5 @@
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import { render } from '@testing-library/react';
 import TimerInput from './timer-input';
 
@@ -9,8 +10,7 @@ describe(`Test ${TimerInput.name} component`, () => {
         text="time"
         hour="01"
         minute="00"
-        // eslint-disable-next-line no-console
-        onChangeTimer={() => {}}
+        onChangeTimer={action('Changed Time')}
       />
     );
     expect(container).toBeTruthy();

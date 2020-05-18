@@ -1,21 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { range } from 'src/services/tools-service';
+import { hour24Options, minOptions } from 'src/services/dates';
 import ValidationErrors from 'src/components/validation-errors';
 import Select from 'react-select';
 
 import styles from './timer-input.module.scss';
 import './timer-input.scss';
 
-const getOptions = (n) => range(n)
-  .map((id) => {
-    const value = `${id < 10 ? '0' : ''}${id}`;
-    return { value, label: value };
-  });
-
-const hours = getOptions(24);
-const minutes = getOptions(60);
 
 const selectedHour = (values, hour) => values.find((item) => item.label === hour);
 const selectedMinute = (values, minute) => values.find((item) => item.label === minute);
@@ -36,8 +28,8 @@ const TimerInput = ({
           inputId={hourInputId}
           className="react-timer-select"
           classNamePrefix="react-timer-select"
-          options={hours}
-          defaultValue={selectedHour(hours, hour)}
+          options={hour24Options}
+          defaultValue={selectedHour(hour24Options, hour)}
           onChange={({ value }) => onChangeTimer({ hour: value, minute })}
         />
         <div className={styles.points}> : </div>
@@ -47,8 +39,8 @@ const TimerInput = ({
           inputId={minsInputId}
           className="react-timer-select"
           classNamePrefix="react-timer-select"
-          options={minutes}
-          defaultValue={selectedMinute(minutes, minute)}
+          options={minOptions}
+          defaultValue={selectedMinute(minOptions, minute)}
           onChange={({ value }) => onChangeTimer({ minute: value, hour })}
         />
       </div>
