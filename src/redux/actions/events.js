@@ -8,7 +8,7 @@ export const fetchAsyncEvents = createAsyncThunk(
   async ({ fromDate, toDate }, { dispatch }) => {
     const fromDateStr = fromDate.format(YYYY_MM_DD);
     const toDateStr = toDate.format(YYYY_MM_DD);
-    const response = await withToast(axios.get(`http://localhost:5000/api/v1/events/from/${fromDateStr}/to/${toDateStr}`), {
+    const response = await withToast(axios.get(`/api/v1/events/from/${fromDateStr}/to/${toDateStr}`), {
       dispatch,
       text: 'Failed to get events'
     });
@@ -19,7 +19,7 @@ export const fetchAsyncEvents = createAsyncThunk(
 export const createAsyncEvent = createAsyncThunk(
   'events/create',
   async (event, { dispatch }) => {
-    const response = await withToast(axios.post('http://localhost:5000/api/v1/events', event), {
+    const response = await withToast(axios.post('/api/v1/events', event), {
       dispatch,
       text: 'Failed creating event'
     });
@@ -30,7 +30,7 @@ export const createAsyncEvent = createAsyncThunk(
 export const editAsyncEvent = createAsyncThunk(
   'events/edit',
   async (event, { dispatch }) => {
-    const response = await withToast(axios.post(`http://localhost:5000/api/v1/events/${event.id}`, event), {
+    const response = await withToast(axios.post(`/api/v1/events/${event.id}`, event), {
       dispatch,
       text: 'Failed editing event'
     });
@@ -41,7 +41,7 @@ export const editAsyncEvent = createAsyncThunk(
 export const deleteAsyncEvent = createAsyncThunk(
   'events/delete',
   async (event, { dispatch }) => {
-    await withToast(axios.delete(`http://localhost:5000/api/v1/events/${event.id}`), {
+    await withToast(axios.delete(`/api/v1/events/${event.id}`), {
       dispatch,
       text: 'Failed deleting event'
     });
@@ -52,7 +52,7 @@ export const deleteAsyncEvent = createAsyncThunk(
 export const deleteRangeAsyncEvent = createAsyncThunk(
   'events/deleteAll',
   async (id, { dispatch }) => {
-    await withToast(axios.delete(`http://localhost:5000/api/v1/events?date=${id}`), {
+    await withToast(axios.delete(`/api/v1/events?date=${id}`), {
       dispatch,
       text: 'Failed deleting events'
     });

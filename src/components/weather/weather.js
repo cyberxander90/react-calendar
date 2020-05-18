@@ -22,7 +22,7 @@ const Weather = ({
     return cancel;
   }, [debounceFetch, city, date]);
 
-  return weather != null && (
+  return Boolean(weather) && (
     <div className={classNames(className, styles.weather)}>
       <ul className={styles.features}>
         <li className={styles.feature}>
