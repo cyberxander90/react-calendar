@@ -21,4 +21,9 @@ PropTypes.children = PropTypes.oneOfType([
   PropTypes.node
 ]);
 
+PropTypes.toast = PropTypes.shape({
+  id: PropTypes.string,
+  text: PropTypes.string,
+});
+
 export default PropTypes;

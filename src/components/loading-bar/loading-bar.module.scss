@@ -29,17 +29,25 @@
 }
 
 @keyframes increase {
-  from { left: -5%;
-    width: 5%; }
+  from {
+    left: -5%;
+    width: 5%;
+  }
 
-  to { left: 130%;
-    width: 100%; }
+  to {
+    left: 130%;
+    width: 100%;
+  }
 }
 
 @keyframes decrease {
-  from { left: -80%;
-    width: 80%; }
+  from {
+    left: -80%;
+    width: 80%;
+  }
 
-  to { left: 110%;
-    width: 10%; }
+  to {
+    left: 110%;
+    width: 10%;
+  }
 }

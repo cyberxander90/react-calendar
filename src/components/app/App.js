@@ -8,9 +8,11 @@ import {
 } from 'react-router-dom';
 import MonthPage from 'src/pages/month';
 import buildStore from 'src/redux/store';
+import ToastConnected from 'src/components/toast';
 
 const App = () => (
   <Provider store={buildStore()}>
+    <ToastConnected />
     <Router>
       <Switch>
         <Route path={['/month/:date', '/']}>

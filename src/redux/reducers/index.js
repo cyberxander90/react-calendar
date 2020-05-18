@@ -1,5 +1,7 @@
 import eventReducer from './events';
+import toastReducer from './toast';
 
 export default {
-  events: eventReducer
+  events: eventReducer,
+  toasts: toastReducer
 };

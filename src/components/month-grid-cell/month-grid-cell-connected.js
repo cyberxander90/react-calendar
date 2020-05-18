@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'src/services/prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { createAsyncEvent, deleteAllAsyncEvent } from 'src/redux/actions/events';
+import { createAsyncEvent, deleteRangeAsyncEvent } from 'src/redux/actions/events';
 import { YYYY_MM_DD } from 'src/services/dates';
 import MonthGridCell from './month-grid-cell';
 
@@ -22,7 +22,7 @@ const MonthGridCellConnected = ({ date, ...otherProps }) => {
   const onCreateEvent = (event) => dispatch(createAsyncEvent(event));
   const onDeleteAllEvents = () => {
     if (confirm('Do you want to delete all events in this day?')) {
-      dispatch(deleteAllAsyncEvent(date.format(YYYY_MM_DD)));
+      dispatch(deleteRangeAsyncEvent(date.format(YYYY_MM_DD)));
     }
   };
 

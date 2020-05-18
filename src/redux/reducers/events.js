@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {
-  fetchAsyncEvents, createAsyncEvent, editAsyncEvent, deleteAsyncEvent, deleteAllAsyncEvent
+  fetchAsyncEvents, createAsyncEvent, editAsyncEvent, deleteAsyncEvent, deleteRangeAsyncEvent
 } from 'src/redux/actions/events';
 import { createSliceAdapter } from 'src/services/redux';
 
@@ -10,14 +10,14 @@ export default createSliceAdapter('event', {
   edit: editAsyncEvent,
   remove: deleteAsyncEvent,
   getExtraReducers: (pendingRequests) => ({
-    [deleteAllAsyncEvent.pending]: (state, { meta }) => {
+    [deleteRangeAsyncEvent.pending]: (state, { meta }) => {
       state.loading = pendingRequests.add(meta);
     },
-    [deleteAllAsyncEvent.rejected]: (state, { meta: { requestId } }) => {
+    [deleteRangeAsyncEvent.rejected]: (state, { meta: { requestId } }) => {
       state.errors[requestId] = 'Failed!';
       state.loading = pendingRequests.remove({ requestId });
     },
-    [deleteAllAsyncEvent.fulfilled]: (state, { payload: { id }, meta }) => {
+    [deleteRangeAsyncEvent.fulfilled]: (state, { payload: { id }, meta }) => {
       Object.keys(state.data).forEach((key) => {
         if (state.data[key].startDate.startsWith(id)) {
           delete state.data[key];

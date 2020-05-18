@@ -24,7 +24,7 @@
   border-left: 1px solid $color-light-gray;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: calc(90vh - 25px);
 
   > * {
     flex: 1;
