@@ -1,4 +1,4 @@
-import eventReducer from './events.reducers';
+import eventReducer from './events';
 
 export default {
   events: eventReducer

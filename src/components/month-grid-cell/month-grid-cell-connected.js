@@ -6,7 +6,7 @@ import React from 'react';
 import PropTypes from 'src/services/prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { createAsyncEvent, deleteAllAsyncEvent } from 'src/redux/actions/events.actions';
+import { createAsyncEvent, deleteAllAsyncEvent } from 'src/redux/actions/events';
 import { YYYY_MM_DD } from 'src/services/dates';
 import MonthGridCell from './month-grid-cell';
 

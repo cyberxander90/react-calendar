@@ -9,7 +9,7 @@ import moment from 'moment';
 import {
   CloseIcon, TrashIcon, BackIcon, EditIcon
 } from 'src/components/icons';
-import { editAsyncEvent, deleteAsyncEvent } from 'src/redux/actions/events.actions';
+import { editAsyncEvent, deleteAsyncEvent } from 'src/redux/actions/events';
 import EventForm from 'src/components/event-form';
 import Tooltip from 'src/components/tooltip';
 import EventDetails from 'src/components/event-details';

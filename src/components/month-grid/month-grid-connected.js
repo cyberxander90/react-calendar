@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'src/services/prop-types';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
-import { fetchAsyncEvents } from 'src/redux/actions/events.actions';
+import { fetchAsyncEvents } from 'src/redux/actions/events';
 import { getGridDates } from 'src/services/dates';
 import { MonthGrid } from 'src/components/month-grid';
 import MonthGridCellConnected from 'src/components/month-grid-cell';

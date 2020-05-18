@@ -6,7 +6,7 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-import MonthPage from 'src/pages/month.page';
+import MonthPage from 'src/pages/month';
 import buildStore from 'src/redux/store';
 
 const App = () => (

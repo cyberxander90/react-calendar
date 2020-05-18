@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
 import {
   fetchAsyncEvents, createAsyncEvent, editAsyncEvent, deleteAsyncEvent, deleteAllAsyncEvent
-} from 'src/redux/actions/events.actions';
-import { createSliceAdapter } from 'src/services/redux/redux.service';
+} from 'src/redux/actions/events';
+import { createSliceAdapter } from 'src/services/redux';
 
 export default createSliceAdapter('event', {
   fetch: fetchAsyncEvents,

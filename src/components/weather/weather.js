@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'src/services/prop-types';
-import { getWeather } from 'src/services/weather/weather.service';
+import { getWeather } from 'src/services/weather';
 import { TemperatureIcon, CloudIcon, RainIcon } from 'src/components/icons';
 import { debounce } from 'src/services/tools';
 import classNames from 'classnames';

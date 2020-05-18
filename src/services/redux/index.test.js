@@ -1,4 +1,4 @@
-import { PendingRequests, createSliceAdapter } from './redux.service';
+import { PendingRequests, createSliceAdapter } from '.';
 
 describe('Redux service', () => {
   it('PendingRequest class works correctly', () => {
