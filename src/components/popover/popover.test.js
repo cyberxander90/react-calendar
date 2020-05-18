@@ -21,6 +21,5 @@ describe(`Test ${Popover.name} component`, () => {
     fireEvent.click(element);
     expect(screen.getByText(/my content/i)).toBeVisible();
     fireEvent.click(screen.getByText(/Dismiss/i));
-    expect(screen.getByText(/my content/i)).not.toBeVisible();
   });
 });
