@@ -6,6 +6,7 @@ export const shouldStopEvent = (event) => {
   const validClasses = [
     'react-tiny-popover-container',
     'day',
+    'DayPicker-Day'
   ];
   const validDataAttrs = [
     'data-tiny-popover',

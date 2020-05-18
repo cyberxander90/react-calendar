@@ -9,7 +9,7 @@ export default {
 export const Default = () => (
   <div style={{ width: 400 }}>
     <EventForm
-      id="2020-01-01"
+      date="2020-01-01"
       onSubmit={action('Submitted')}
       onCancel={action('Cancel')}
     />

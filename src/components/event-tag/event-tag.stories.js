@@ -10,19 +10,19 @@ export default {
 
 const data = [
   {
-    id: 1, color: 'red', remainder: 'Text 1', startDate: '2020-05-10 09-30', endDate: '2020-05-10 09-30'
+    id: '1', color: 'red', remainder: 'Text 1', startDate: '2020-05-10 09-30', endDate: '2020-05-10 09-30'
   },
   {
-    id: 2, color: 'green', remainder: 'Text 2', startDate: '2020-05-10 10-30', endDate: '2020-05-10-09-30'
+    id: '2', color: 'green', remainder: 'Text 2', startDate: '2020-05-10 10-30', endDate: '2020-05-10-09-30'
   },
   {
-    id: 3, color: 'blue', remainder: 'Text 3', startDate: '2020-05-10 05-20', endDate: '2020-05-10-09-30'
+    id: '3', color: 'blue', remainder: 'Text 3', startDate: '2020-05-10 05-20', endDate: '2020-05-10-09-30'
   },
   {
-    id: 4, color: 'green', remainder: 'Text 4', startDate: '2020-05-10 10-30', endDate: '2020-05-10-09-30'
+    id: '4', color: 'green', remainder: 'Text 4', startDate: '2020-05-10 10-30', endDate: '2020-05-10-09-30'
   },
   {
-    id: 5, color: 'blue', remainder: 'Text 5', startDate: '2020-05-10 05-20', endDate: '2020-05-10-09-30'
+    id: '5', color: 'blue', remainder: 'Text 5', startDate: '2020-05-10 05-20', endDate: '2020-05-10-09-30'
   }
 ];
 

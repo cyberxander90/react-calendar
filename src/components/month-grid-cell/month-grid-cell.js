@@ -22,7 +22,6 @@ const MonthGridCell = ({
             tabIndex={tabIndex}
             content={(toggle) => (
               <EventForm
-                id={date}
                 date={date}
                 onSubmit={(event) => {
                   onCreateEvent(event);

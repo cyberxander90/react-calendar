@@ -77,7 +77,7 @@ const EventTagItemContent = ({ date, event, toggle }) => {
 
       {view ? (
         <EventForm
-          id={date}
+          date={date}
           remainder={event.remainder}
           color={event.color}
           city={event.city}

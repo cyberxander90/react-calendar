@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'src/services/prop-types';
 import TextInput from 'src/components/text-input';
 import TimerInput from 'src/components/timer-input';
 import ColorPicker from 'src/components/pick-color';
 import moment from 'moment';
-import DayPicker from 'react-daypicker';
+import DayPicker from 'react-day-picker';
 import Weather from 'src/components/weather';
 import { CalendarIcon } from 'src/components/icons';
 import classNames from 'classnames';
+import { YYYY_MM_DD } from 'src/services/dates';
 import {
   validateRemainder,
   validateStartTime,
   validateEndTime
 } from './validations';
 import styles from './event-form.module.scss';
-import 'react-daypicker/lib/DayPicker.css';
+import 'react-day-picker/lib/style.css';
 import Button from '../button';
 
 const EventForm = ({
-  id,
+  date: initDate,
   remainder: initRemainder,
   color: initColor,
   city: initCity,
@@ -45,8 +46,9 @@ const EventForm = ({
   const [endTimeErrors, setEndTimeErrors] = useState(validateEndTime(startTime, endTime));
 
   // date picker
-  const [date, setDate] = useState(moment(id).toDate());
+  const [date, setDate] = useState(moment(initDate).toDate());
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const dateStr = moment(date).format(YYYY_MM_DD);
 
   // handle remainder change
   const handleRemainderChange = ({ target: { value } }) => {
@@ -81,13 +83,12 @@ const EventForm = ({
       return;
     }
 
-    const submitId = moment(date).format('YYYY-MM-DD');
     onSubmit({
       remainder,
       color,
       city,
-      startDate: `${submitId} ${startTime.hour}:${startTime.minute}`,
-      endDate: `${submitId} ${endTime.hour}:${endTime.minute}`,
+      startDate: `${dateStr} ${startTime.hour}:${startTime.minute}`,
+      endDate: `${dateStr} ${endTime.hour}:${endTime.minute}`,
     });
   };
 
@@ -134,12 +135,12 @@ const EventForm = ({
       >
         <CalendarIcon />
         {' '}
-        {moment(date).format('YYYY-MM-DD')}
+        {dateStr}
       </div>
 
       {showDatePicker && (
         <DayPicker
-          active={date}
+          month={date}
           onDayClick={(value) => {
             setDate(moment(value).toDate());
             setShowDatePicker(!showDatePicker);
@@ -158,7 +159,7 @@ const EventForm = ({
       <Weather
         className={styles.weather}
         city={city}
-        date={moment(date).format('YYYY-MM-DD')}
+        date={dateStr}
         ms={600}
       />
 
@@ -182,7 +183,7 @@ const EventForm = ({
 
 
 EventForm.propTypes = {
-  id: PropTypes.string.isRequired,
+  date: PropTypes.date.isRequired,
   remainder: PropTypes.string,
   color: PropTypes.string,
   startMinute: PropTypes.string,

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { range } from 'src/services/tools-service';
@@ -23,11 +24,16 @@ const TimerInput = ({
   text, hour, minute, onChangeTimer, displayValidation, errors, className
 }) => {
   const isInvalid = displayValidation && errors.length > 0;
+  const hourInputId = `${text}-hours`;
+  const minsInputId = `${text}-mins`;
+
   return (
     <div className={`${className || ''}`}>
       <div className={`${styles.text} ${isInvalid ? styles.invalid : ''}`}>{text}</div>
       <div className={styles.timer}>
+        <label htmlFor={hourInputId} className="hide">{hourInputId}</label>
         <Select
+          inputId={hourInputId}
           className="react-timer-select"
           classNamePrefix="react-timer-select"
           options={hours}
@@ -35,7 +41,10 @@ const TimerInput = ({
           onChange={({ value }) => onChangeTimer({ hour: value, minute })}
         />
         <div className={styles.points}> : </div>
+
+        <label htmlFor={minsInputId} className="hide">{minsInputId}</label>
         <Select
+          inputId={minsInputId}
           className="react-timer-select"
           classNamePrefix="react-timer-select"
           options={minutes}

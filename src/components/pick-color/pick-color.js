@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -58,15 +59,19 @@ const colourStyles = {
 };
 
 const PickColor = ({ color, className, onChange }) => (
-  <Select
-    className={`${stylesColorPicker.pick} ${className || ''}`}
-    defaultValue={colourOptions.find((item) => color === item.color)}
-    label="Pick Color"
-    placeholder="Color"
-    options={colourOptions}
-    styles={colourStyles}
-    onChange={(item) => onChange(item.color)}
-  />
+  <>
+    <label htmlFor="pick-color" className="hide">Pick Color</label>
+    <Select
+      inputId="pick-color"
+      className={`${stylesColorPicker.pick} ${className || ''}`}
+      defaultValue={colourOptions.find((item) => color === item.color)}
+      label="Pick Color"
+      placeholder="Color"
+      options={colourOptions}
+      styles={colourStyles}
+      onChange={(item) => onChange(item.color)}
+    />
+  </>
 );
 
 PickColor.propTypes = {
