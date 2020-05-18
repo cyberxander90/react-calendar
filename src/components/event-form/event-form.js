@@ -9,14 +9,14 @@ import Weather from 'src/components/weather';
 import { CalendarIcon } from 'src/components/icons';
 import classNames from 'classnames';
 import { YYYY_MM_DD } from 'src/services/dates';
+import 'react-day-picker/lib/style.css';
+import Button from 'src/components/button';
+import styles from './event-form.module.scss';
 import {
   validateRemainder,
   validateStartTime,
   validateEndTime
 } from './validations';
-import styles from './event-form.module.scss';
-import 'react-day-picker/lib/style.css';
-import Button from '../button';
 
 const EventForm = ({
   date: initDate,

@@ -10,10 +10,10 @@ import {
   CloseIcon, TrashIcon, BackIcon, EditIcon
 } from 'src/components/icons';
 import { editAsyncEvent, deleteAsyncEvent } from 'src/redux/actions/events.actions';
+import EventForm from 'src/components/event-form';
+import Tooltip from 'src/components/tooltip';
+import EventDetails from 'src/components/event-details';
 import styles from './event-tag-item.module.scss';
-import EventForm from '../event-form';
-import Tooltip from '../tooltip';
-import EventDetails from '../event-details';
 
 const deleteEvent = (dispatch, event) => () => {
   if (confirm('Do you want to delete the event?')) {

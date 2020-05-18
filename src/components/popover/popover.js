@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'src/services/prop-types';
 import TinyPopover from 'react-tiny-popover';
 import classNames from 'classnames';
+import { CloseIcon } from 'src/components/icons';
+import Tooltip from 'src/components/tooltip';
 import styles from './popover.module.scss';
-import { CloseIcon } from '../icons';
-import Tooltip from '../tooltip';
 import { shouldStopEvent } from './utils';
 
 const Popover = ({

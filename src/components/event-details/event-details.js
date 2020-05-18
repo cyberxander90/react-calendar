@@ -6,9 +6,9 @@ import {
 } from 'src/components/icons';
 import { YYYY_MM_DD, HH_MM } from 'src/services/dates';
 
+import Weather from 'src/components/weather';
+import ColorTag from 'src/components/color-tag';
 import styles from './event-details.module.scss';
-import Weather from '../weather';
-import ColorTag from '../color-tag';
 
 const EventDetails = ({
   remainder, color, startDate, endDate, city
