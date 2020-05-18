@@ -46,3 +46,9 @@ body {
 .hide {
   display: none;
 }
+
+@media screen and (max-width: $sm) {
+  .action-icon {
+    width: 10px;
+  }
+}
