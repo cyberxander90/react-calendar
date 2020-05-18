@@ -1,4 +1,4 @@
-import { range } from './tools-service';
+import { range } from '.';
 
 describe('Tools Service', () => {
   describe('range', () => {
