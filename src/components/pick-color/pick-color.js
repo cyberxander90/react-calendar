@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import chroma from 'chroma-js';
+import classNames from 'classnames';
 import stylesColorPicker from './pick-color.module.scss';
 
 const colourOptions = [
@@ -63,7 +64,7 @@ const PickColor = ({ color, className, onChange }) => (
     <label htmlFor="pick-color" className="hide">Pick Color</label>
     <Select
       inputId="pick-color"
-      className={`${stylesColorPicker.pick} ${className || ''}`}
+      className={classNames(stylesColorPicker.pick, className)}
       defaultValue={colourOptions.find((item) => color === item.color)}
       label="Pick Color"
       placeholder="Color"
@@ -82,8 +83,8 @@ PickColor.propTypes = {
 
 PickColor.defaultProps = {
   color: '',
-  onChange: () => {},
-  className: ''
+  className: '',
+  onChange: () => {}
 };
 
 export default PickColor;

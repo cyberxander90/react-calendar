@@ -4,6 +4,7 @@ import PropTypes from 'src/services/prop-types';
 import { getWeather } from 'src/services/weather/weather.service';
 import { TemperatureIcon, CloudIcon, RainIcon } from 'src/components/icons';
 import { debounce } from 'src/services/tools-service';
+import classNames from 'classnames';
 import styles from './weather.module.scss';
 
 const fetch = async ({ city, date, setWeather }) => {
@@ -21,7 +22,7 @@ const Weather = ({
   }, [debounceFetch, city, date]);
 
   return weather && (
-    <div className={`${className} ${styles.weather}`}>
+    <div className={classNames(className, styles.weather)}>
       <ul className={styles.features}>
         <li className={styles.feature}>
           <TemperatureIcon />

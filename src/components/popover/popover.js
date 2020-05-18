@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'src/services/prop-types';
 import TinyPopover from 'react-tiny-popover';
-
+import classNames from 'classnames';
 import styles from './popover.module.scss';
 import { CloseIcon } from '../icons';
 import Tooltip from '../tooltip';
@@ -22,11 +22,11 @@ const Popover = ({
   };
 
   const Content = (
-    <div className={`${contentClassName} ${styles.popover}`}>
+    <div className={classNames(contentClassName, styles.popover)}>
       {displayClose && (
         <Tooltip
           text="Close"
-          className={`${styles.close} action-icon pointer`}
+          className={classNames(styles.close, 'action-icon', 'pointer')}
           onClick={toggle}
         >
           <CloseIcon />

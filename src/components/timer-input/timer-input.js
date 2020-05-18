@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { hour24Options, minOptions } from 'src/services/dates';
 import ValidationErrors from 'src/components/validation-errors';
 import Select from 'react-select';
+import classNames from 'classnames';
 
 import styles from './timer-input.module.scss';
 import './timer-input.scss';
@@ -20,8 +21,8 @@ const TimerInput = ({
   const minsInputId = `${text}-mins`;
 
   return (
-    <div className={`${className || ''}`}>
-      <div className={`${styles.text} ${isInvalid ? styles.invalid : ''}`}>{text}</div>
+    <div className={classNames(className)}>
+      <div className={classNames(styles.text, { [styles.invalid]: isInvalid })}>{text}</div>
       <div className={styles.timer}>
         <label htmlFor={hourInputId} className="hide">{hourInputId}</label>
         <Select

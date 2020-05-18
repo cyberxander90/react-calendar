@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ValidationErrors from 'src/components/validation-errors';
+import classNames from 'classnames';
 
 import styles from './text-input.module.scss';
 
@@ -9,7 +10,7 @@ const TextInput = ({
 }) => {
   const isInvalid = displayValidation && errors.length > 0;
   return (
-    <div className={`${styles.text} ${className || ''} ${isInvalid ? styles.invalid : ''}`}>
+    <div className={classNames(styles.text, className, { [styles.invalid]: isInvalid })}>
       <label
         role="presentation"
         htmlFor={name}
