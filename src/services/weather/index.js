@@ -35,7 +35,7 @@ export const fetchRandomWeather = async () => {
 
 const weather = {};
 
-export const getWeather = async (city, date) => {
+export const getWeatherAsync = async (city, date) => {
   if (!city || !date) {
     return null;
   }
@@ -50,4 +50,11 @@ export const getWeather = async (city, date) => {
     weather[date][city] = response;
   }
   return response;
+};
+
+export const getWeather = (city, date) => {
+  console.log(city);
+  console.log(date);
+  console.log(weather);
+  return city && date && weather[date] && weather[date][city];
 };

@@ -19,5 +19,6 @@ export const debounce = (callback, ms) => {
       callback(arg);
       timeOut = null;
     }, ms);
+    return () => clearTimeout(timeOut);
   };
 };

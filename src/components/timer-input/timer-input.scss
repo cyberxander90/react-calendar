@@ -4,7 +4,7 @@
 .react-timer-select {
   .react-timer-select__control {
     border: 0;
-    border-bottom: 1px solid $color-red;
+    border-bottom: 1px solid;
     border-radius: 0;
     box-shadow: none;
     height: 30px;
@@ -58,4 +58,8 @@
   .react-timer-select__menu-notice--no-options {
     display: none;
   }
+}
+
+.invalid .react-timer-select .react-timer-select__control {
+  border-bottom: 1px solid $color-red;
 }

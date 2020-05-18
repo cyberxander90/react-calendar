@@ -53,7 +53,7 @@ const EventDetails = ({
       </li>
       { city && startDate && (
         <li>
-          <Weather city={city} date={mStartDate} />
+          <Weather city={city} date={mStartDate.format(YYYY_MM_DD)} ms={700} />
         </li>
       ) }
     </ul>

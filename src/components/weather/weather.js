@@ -1,27 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'src/services/prop-types';
-import { getWeather } from 'src/services/weather';
+import { getWeatherAsync, getWeather } from 'src/services/weather';
 import { TemperatureIcon, CloudIcon, RainIcon } from 'src/components/icons';
 import { debounce } from 'src/services/tools';
 import classNames from 'classnames';
 import styles from './weather.module.scss';
 
 const fetch = async ({ city, date, setWeather }) => {
-  const result = await getWeather(city, date);
+  const result = await getWeatherAsync(city, date);
   setWeather(result);
 };
 
 const Weather = ({
   date, city, ms, className
 }) => {
-  const [weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState(getWeather(city, date));
   const debounceFetch = useCallback(debounce(fetch, ms), [ms]);
   useEffect(() => {
-    debounceFetch({ city, date, setWeather });
+    const cancel = debounceFetch({ city, date, setWeather });
+    return cancel;
   }, [debounceFetch, city, date]);
 
-  return weather && (
+  return weather != null && (
     <div className={classNames(className, styles.weather)}>
       <ul className={styles.features}>
         <li className={styles.feature}>

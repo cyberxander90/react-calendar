@@ -22,7 +22,7 @@ const TimerInput = ({
   return (
     <div className={classNames(className)}>
       <div className={classNames(styles.text, { [styles.invalid]: isInvalid })}>{text}</div>
-      <div className={styles.timer}>
+      <div className={classNames(styles.timer, { invalid: isInvalid })}>
         <label htmlFor={hourInputId} className="hide">{hourInputId}</label>
         <Select
           inputId={hourInputId}
