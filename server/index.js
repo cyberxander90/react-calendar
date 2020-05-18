@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-
-const eventRoutes = require('./routes/events.routes');
+const eventRoutes = require('./routes/events');
 
 // config express
 const PORT = process.env.PORT || 5000;
