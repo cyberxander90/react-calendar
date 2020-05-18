@@ -21,7 +21,7 @@ const deleteEvent = (dispatch, event) => () => {
   }
 };
 
-const onSubmit = (dispatch, setView) => (value) => {
+const onSubmit = (dispatch, event, setView) => (value) => {
   dispatch(editAsyncEvent({
     id: event.id,
     ...value
@@ -85,7 +85,7 @@ const EventTagItemContent = ({ date, event, toggle }) => {
           startHour={moment(event.startDate).format('HH')}
           endMinute={moment(event.endDate).format('mm')}
           endHour={moment(event.endDate).format('HH')}
-          onSubmit={onSubmit(dispatch, setView)}
+          onSubmit={onSubmit(dispatch, event, setView)}
           onCancel={() => setView(0)}
         />
       ) : (
