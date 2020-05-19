@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "./static/css/main.e6bdc9ff.chunk.css",
+    "main.js": "./main.bccebb623a3047fa6756.bundle.js",
+    "main.css.map": "./static/css/main.e6bdc9ff.chunk.css.map",
+    "main.js.map": "./main.bccebb623a3047fa6756.bundle.js.map",
+    "runtime~main.js": "./runtime~main.bccebb623a3047fa6756.bundle.js",
+    "runtime~main.js.map": "./runtime~main.bccebb623a3047fa6756.bundle.js.map",
+    "vendors~main.css": "./static/css/vendors~main.c6231af7.chunk.css",
+    "vendors~main.js": "./vendors~main.bccebb623a3047fa6756.bundle.js",
+    "vendors~main.css.map": "./static/css/vendors~main.c6231af7.chunk.css.map",
+    "vendors~main.js.map": "./vendors~main.bccebb623a3047fa6756.bundle.js.map",
+    "iframe.html": "./iframe.html",
+    "precache-manifest.8e0fbbbcbe7ed493ef34918642f96bf6.js": "./precache-manifest.8e0fbbbcbe7ed493ef34918642f96bf6.js",
+    "service-worker.js": "./service-worker.js",
+    "static/media/add.d1d3bf21.svg": "./static/media/add.d1d3bf21.svg",
+    "static/media/back.2220bf3f.svg": "./static/media/back.2220bf3f.svg",
+    "static/media/calendar.dd5bce97.svg": "./static/media/calendar.dd5bce97.svg",
+    "static/media/clock.e4931499.svg": "./static/media/clock.e4931499.svg",
+    "static/media/close.8e3fcaad.svg": "./static/media/close.8e3fcaad.svg",
+    "static/media/cloud.5e2a00e3.svg": "./static/media/cloud.5e2a00e3.svg",
+    "static/media/edit.9be4f3da.svg": "./static/media/edit.9be4f3da.svg",
+    "static/media/location.214ffe17.svg": "./static/media/location.214ffe17.svg",
+    "static/media/next.0c2f7f8d.svg": "./static/media/next.0c2f7f8d.svg",
+    "static/media/rain.b079e00f.svg": "./static/media/rain.b079e00f.svg",
+    "static/media/temp.01d84e3d.svg": "./static/media/temp.01d84e3d.svg",
+    "static/media/text.0fb4254c.svg": "./static/media/text.0fb4254c.svg",
+    "static/media/trash.7e01733d.svg": "./static/media/trash.7e01733d.svg",
+    "vendors~main.bccebb623a3047fa6756.bundle.js.LICENSE.txt": "./vendors~main.bccebb623a3047fa6756.bundle.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "runtime~main.bccebb623a3047fa6756.bundle.js",
+    "static/css/vendors~main.c6231af7.chunk.css",
+    "vendors~main.bccebb623a3047fa6756.bundle.js",
+    "static/css/main.e6bdc9ff.chunk.css",
+    "main.bccebb623a3047fa6756.bundle.js"
+  ]
+}

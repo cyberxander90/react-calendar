@@ -17,7 +17,7 @@ const getEvent = (req, id) => {
 // GET events/
 const getEventsHandler = async (req, res) => res.json(req.db.events);
 
-// GET events/from/2020-01-01/to/2020/02-31
+// GET events/from/2020-01-01/to/2020-02-31
 const getRangeEventsHandler = async (req, res) => {
   const startDate = moment(req.params.startDate).startOf('day');
   const endDate = moment(req.params.endDate).endOf('day');

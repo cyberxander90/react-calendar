@@ -13,6 +13,11 @@ app.use(cors());
 // serve events
 app.use('/api/v1/events', eventRoutes);
 
+// serve storybook files
+app.get('/storybook-static/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../storybook-static', req.params[0]));
+});
+
 // serve client files
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
