@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const fetchFromWeatherstack = async (city) => {
   try {
-    const { data } = await axios.get(`http://api.weatherstack.com/current?access_key=5cf36d01cd5d47c672c5add737ef4ae4&query=${city}`);
+    const { data } = await axios.get(`api.weatherstack.com/current?access_key=5cf36d01cd5d47c672c5add737ef4ae4&query=${city}`);
     return data.error
       ? null
       : {
