@@ -196,9 +196,9 @@ EventForm.propTypes = {
 EventForm.defaultProps = {
   remainder: '',
   color: '',
-  startMinute: '01',
-  startHour: '01',
-  endMinute: '01',
+  startMinute: '00',
+  startHour: '00',
+  endMinute: '00',
   endHour: '01',
   city: '',
   onSubmit: () => {},
