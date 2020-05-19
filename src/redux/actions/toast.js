@@ -12,7 +12,7 @@ export const addToast = createAction('toast/add', (text, { timeout, dispatch }) 
   return { payload: toast };
 });
 
-export const withToast = (promise, { dispatch, text = 'Failed!', timeout = 5000000 }) => promise
+export const withToast = (promise, { dispatch, text = 'Failed!', timeout = 5000 }) => promise
   .then((response) => response)
   .catch((error) => {
     dispatch(addToast(text, { timeout, dispatch }));

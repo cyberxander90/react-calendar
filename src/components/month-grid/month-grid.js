@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { geNameOfWeekDay, getDaysOfWeek, YYYY_MM_DD } from 'src/services/dates';
+import moment from 'moment';
 
 import styles from './month-grid.module.scss';
 
@@ -28,12 +29,14 @@ const MonthGrid = ({
 
   // the body of the grid
   const CellBodyCmp = cellBodyCmp || (({ id }) => <div className={styles.daymonth}>{id}</div>);
+  const today = moment();
   const mapCell = (mDate, i) => (
     <CellBodyCmp
       key={mDate.format(YYYY_MM_DD)}
       id={mDate.format(YYYY_MM_DD)}
       date={mDate}
       day={mDate.date()}
+      isToday={today.isSame(mDate, 'day')}
       isCurrentMonth={mDate.month() === monthNumber}
       isWeekend={[0, 6].includes(mDate.day())}
       tabIndex={i}

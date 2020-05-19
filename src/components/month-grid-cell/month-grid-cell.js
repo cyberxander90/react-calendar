@@ -13,7 +13,7 @@ import styles from './month-grid-cell.module.scss';
 const sortEvents = (events) => events.sort((a, b) => moment(a.startDate).diff(moment(b.startDate)));
 
 const MonthGridCell = ({
-  date, day, isCurrentMonth, isWeekend, tabIndex,
+  date, day, isCurrentMonth, isToday, isWeekend, tabIndex,
   events: eventsParams, onCreateEvent, onDeleteAllEvents
 }) => {
   const events = sortEvents(eventsParams);
@@ -22,7 +22,7 @@ const MonthGridCell = ({
       <div className={classNames({ [styles.disabled]: !isCurrentMonth })}>
 
         <div className={styles.header}>
-          <div className={styles.day}>{day}</div>
+          <div className={classNames(styles.day, { [styles.today]: isToday })}>{day}</div>
           <div className={styles.actions}>
             <Popover
               tabIndex={tabIndex}
@@ -67,6 +67,7 @@ MonthGridCell.propTypes = {
   date: PropTypes.date.isRequired,
   day: PropTypes.number,
   isCurrentMonth: PropTypes.bool,
+  isToday: PropTypes.bool,
   isWeekend: PropTypes.bool,
   tabIndex: PropTypes.number,
   events: PropTypes.arrayOf(PropTypes.event),
@@ -77,6 +78,7 @@ MonthGridCell.propTypes = {
 MonthGridCell.defaultProps = {
   day: 0,
   isCurrentMonth: false,
+  isToday: false,
   isWeekend: false,
   tabIndex: 0,
   events: [],

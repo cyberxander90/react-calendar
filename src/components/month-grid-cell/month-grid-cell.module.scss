@@ -1,3 +1,4 @@
+@import 'src/styles/variables';
 
 .actions {
   display: flex;
@@ -35,6 +36,16 @@
   font-weight: bold;
   margin-left: 6px;
   margin-top: 3px;
+}
+
+.today {
+  background: $color-blue;
+  border-radius: 50%;
+  color: $color-white;
+  display: inline-block;
+  margin-left: 2px;
+  margin-top: 2px;
+  padding: 4px;
 }
 
 .weekend {
