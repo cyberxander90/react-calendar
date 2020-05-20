@@ -1,7 +1,8 @@
 
 # react-calendar
 
-Calendar application built with [React](https://reactjs.org/).
+Calendar application built with React.
+https://calendarx.herokuapp.com/
 
 ## Core Technologies
 
@@ -42,6 +43,7 @@ Then install dependencies
 To start the project for **production** execute
 
 ```bash
+> npm run build
 > npm run start
 ```
 
@@ -110,9 +112,13 @@ curl --location --request DELETE 'http://localhost:5000/api/v1/events/all'
 
 # Available Scripts
 
+## `npm run build`
+
+Builds the **react app** for production to the `build` folder.
+
 ## `npm run start`
 
-Build the **react app** and run the **express server**.
+Run the **express server**.
 Then navigate to http://localhost:5000/
 
 ## `npm run start-client`
@@ -130,10 +136,6 @@ Launches the **test runner** in the interactive watch mode.
 ## `npm run test-unit`
 
 Run unit tests.
-
-## `npm run build`
-
-Builds the **react app** for production to the `build` folder.
 
 ## `npm run analyze`
 
