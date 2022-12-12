@@ -11,7 +11,7 @@
     "chroma-js": "^2.1.0",
     "classnames": "^2.2.6",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "moment": "^2.25.3",
     "react": "^16.13.1",
     "react-day-picker": "^7.4.8",
